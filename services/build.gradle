@@ -1,0 +1,7 @@
+dependencies {
+    implementation "org.springframework:spring-context:5.1.8.RELEASE"
+
+//    implementation project(":commons")
+    implementation project(":db")
+
+}

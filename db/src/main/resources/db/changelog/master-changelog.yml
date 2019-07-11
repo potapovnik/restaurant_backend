@@ -1,0 +1,12 @@
+databaseChangeLog:
+    -   preConditions:
+            -   dbms:
+                    type: postgresql
+    -   changeSet:
+            id           : 1
+            author       : mmamontov
+            comment      : Create dish, ingridient, dish_ingridient tables
+            changes      :
+                -   sqlFile:
+                        path                   : changesets/RE-001.sql
+                        relativeToChangelogFile: true
