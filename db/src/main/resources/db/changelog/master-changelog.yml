@@ -1,0 +1,20 @@
+databaseChangeLog:
+    -   preConditions:
+            -   dbms:
+                    type: postgresql
+    -   changeSet:
+            id           : 1
+            author       : mmamontov
+            comment      : Create dish, ingridient, dish_ingridient tables
+            changes      :
+                -   sqlFile:
+                        path                   : changesets/RE-001.sql
+                        relativeToChangelogFile: true
+    -  changeSet:
+        id: 2
+        author: potapov
+        comment: Create users, roles, orders,cook_orders,dish_orders,order_dish tables
+        changes:
+        - sqlFile:
+            path: changesets/changeset_2.0.sql
+            relativeToChangelogFile: true
