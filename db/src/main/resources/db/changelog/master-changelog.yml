@@ -10,3 +10,11 @@ databaseChangeLog:
                 -   sqlFile:
                         path                   : changesets/RE-001.sql
                         relativeToChangelogFile: true
+    -  changeSet:
+        id: 2
+        author: potapov
+        comment: Create users, roles, orders,cook_orders,dish_orders,order_dish tables
+        changes:
+        - sqlFile:
+            path: changesets/changeset_2.0.sql
+            relativeToChangelogFile: true
