@@ -1,9 +1,14 @@
 CREATE TABLE ingredients(
                             id SERIAL PRIMARY KEY,
-                            name VARCHAR(50) NOT NULL,
-                            measure VARCHAR(50) NOT NULL,
-                            value DOUBLE PRECISION NOT NULL,
-                            expirationDate TIMESTAMP NOT NULL
+                            name VARCHAR(50) NOT NULL UNIQUE,
+                            measure VARCHAR(50) NOT NULL
+);
+CREATE TABLE ingredient_parts(
+    id SERIAL PRIMARY KEY,
+    ingredient_id INTEGER NOT NULL,
+    value DOUBLE PRECISION NOT NULL,
+    expiration_date TIMESTAMP NOT NULL,
+    FOREIGN KEY (ingredient_id) REFERENCES ingredients (id)
 );
 CREATE TABLE dishes(
                        id SERIAL PRIMARY KEY,
@@ -14,9 +19,9 @@ CREATE TABLE dishes(
 );
 CREATE TABLE dish_ingredient(
                                 id SERIAL PRIMARY KEY,
-                                dishId INTEGER NOT NULL,
+                                dish_id INTEGER NOT NULL,
                                 value DOUBLE PRECISION NOT NULL,
-                                ingredientId INTEGER NOT NULL,
-                                FOREIGN KEY (dishId) REFERENCES dishes (id),
-                                FOREIGN KEY (ingredientId) REFERENCES ingredients (id)
+                                ingredient_id INTEGER NOT NULL,
+                                FOREIGN KEY (dish_id) REFERENCES dishes (id),
+                                FOREIGN KEY (ingredient_id) REFERENCES ingredients (id)
 );
