@@ -1,10 +1,6 @@
 package ru.relex.restaurant.db.entity;
 
-import org.springframework.core.annotation.Order;
-import ru.relex.restaurant.shared.model.Role;
-
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Entity

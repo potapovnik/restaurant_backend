@@ -7,7 +7,7 @@ import ru.relex.restaurant.service.DTO.IngredientPartDto;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface IIngredientPartMapstruct {
+public interface IIngredientPartMapper {
     IngredientPart fromDto(IngredientPartDto dto);
     IngredientPartDto toDto (IngredientPart ingredient);
     List<IngredientPart> fromDto(List<IngredientPartDto> dtos);

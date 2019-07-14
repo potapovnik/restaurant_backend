@@ -2,37 +2,35 @@ package ru.relex.restaurant.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.IngredientRepository;
-import ru.relex.restaurant.db.entity.Ingredient;
 import ru.relex.restaurant.service.IIngredientService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
-import ru.relex.restaurant.service.mapper.IIngredientMapstruct;
+import ru.relex.restaurant.service.mapper.IIngredientMapper;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class IngredientService implements IIngredientService {
-    public IngredientService(final IngredientRepository repository,final IIngredientMapstruct mapstruct) {
+    public IngredientService(final IngredientRepository repository,final IIngredientMapper mapper) {
         this.repository = repository;
-        this.mapstruct = mapstruct;
+        this.mapper = mapper;
     }
     private final IngredientRepository repository;
-    private final IIngredientMapstruct mapstruct;
+    private final IIngredientMapper mapper;
 
 
     @Override
     public void createIngredient(IngredientDto ingredientDto) {
-        repository.save(mapstruct.fromDto(ingredientDto));
+        repository.save(mapper.fromDto(ingredientDto));
     }
 
     @Override
     public List<IngredientDto> listIngredients() {
-        return mapstruct.toDto(repository.findAll());
+        return mapper.toDto(repository.findAll());
     }
 
     @Override
     public void updateIngredient(IngredientDto ingredientDto) {
-
+        repository.save(mapper.fromDto(ingredientDto));
     }
 
     @Override

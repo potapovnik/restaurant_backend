@@ -2,35 +2,39 @@ package ru.relex.restaurant.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.DishRepository;
-import ru.relex.restaurant.db.entity.Dish;
+
+import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.IDishService;
+import ru.relex.restaurant.service.mapper.IDishMapper;
 
 import java.util.List;
 
 @Service
 public class DishService implements IDishService {
     private final DishRepository dishRepository;
-    public DishService(DishRepository dishRepository) {
+    private final IDishMapper mapper;
+    public DishService(DishRepository dishRepository, IDishMapper mapper) {
         this.dishRepository = dishRepository;
+        this.mapper = mapper;
     }
 
     @Override
-    public void createDish(Dish dish) {
+    public void createDish(DishDto dish) {
 
     }
 
     @Override
-    public List<Dish> listDishesInMenu() {
+    public List<DishDto> listDishesInMenu() {
         return null;
     }
 
     @Override
-    public List<Dish> listDishesAllTime() {
+    public List<DishDto> listDishesAllTime() {
         return null;
     }
 
     @Override
-    public void updateDish(Dish dish) {
+    public void updateDish(DishDto dish) {
 
     }
 
