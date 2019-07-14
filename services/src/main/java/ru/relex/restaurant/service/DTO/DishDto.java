@@ -1,5 +1,7 @@
 package ru.relex.restaurant.service.DTO;
 
+import java.util.Set;
+
 public class DishDto {
 
     private Integer id;
@@ -7,6 +9,15 @@ public class DishDto {
     private Double cost;
     private String type;
     private Boolean ismenu;
+    private Set<IngredientDto> ingredients;
+
+    public Set<IngredientDto> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<IngredientDto> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public Integer getId() {
         return id;

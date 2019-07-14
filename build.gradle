@@ -22,14 +22,6 @@ subprojects {
     apply plugin: "java-library"
 }
 
-subprojects.each { proj ->
-    if (proj.name != "commons") {
-        proj.dependencies {
-            implementation project(":commons")
-        }
-    }
-}
-
 
 dependencies {
     implementation project(":services")

@@ -1,7 +1,5 @@
 package ru.relex.restaurant.db.entity;
 
-import ru.relex.restaurant.shared.model.Role;
-
 import javax.persistence.*;
 import java.util.Objects;
 
