@@ -2,7 +2,7 @@ package ru.relex.restaurant.web.api;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.relex.restaurant.web.model.ValueWrapper;
+import ru.relex.restaurant.service.DTO.RoleDTO;
 import ru.relex.restaurant.service.ITestService;
 
 @RestController
@@ -18,9 +18,14 @@ public class MainController {
         this.service = service;
     }
 
+
     @GetMapping
-    public ValueWrapper<String> sayHello(@RequestParam("name") String name) {
-        return new ValueWrapper<>(service.sayHello(name));
+    public RoleDTO getByID(@RequestParam("id") int id) {
+        RoleDTO roleDTO = null;
+        if (roleDTO == null) {
+            return null;//изменить на ошибку
+        }
+        return roleDTO;
     }
 
 }
