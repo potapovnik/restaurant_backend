@@ -1,8 +1,10 @@
 package ru.relex.restaurant.db.entity;
 
+
+
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlTransient;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ingredient_parts")
@@ -13,14 +15,21 @@ public class IngredientPart {
     private Integer id;
 
     private Double value;
-    private LocalDateTime expirationDate;
+    private Timestamp expirationDate;
 
-    //@XmlTransient
-    @ManyToOne()
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ingredient_id")
+
     private Ingredient ingredient;
 
     public IngredientPart() {
+    }
+
+    public IngredientPart(Double value, Timestamp expirationDate, Ingredient ingredient) {
+        this.value = value;
+        this.expirationDate = expirationDate;
+        this.ingredient = ingredient;
     }
 
     public Integer getId() {
@@ -39,11 +48,11 @@ public class IngredientPart {
         this.value = value;
     }
 
-    public LocalDateTime getExpirationDate() {
+    public Timestamp getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDateTime expirationDate) {
+    public void setExpirationDate(Timestamp expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -53,5 +62,21 @@ public class IngredientPart {
 
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IngredientPart that = (IngredientPart) o;
+        return id.equals(that.id) &&
+                value.equals(that.value) &&
+                expirationDate.equals(that.expirationDate) &&
+                ingredient.equals(that.ingredient);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, value, expirationDate, ingredient);
     }
 }

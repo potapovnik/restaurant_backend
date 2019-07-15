@@ -3,6 +3,7 @@ package ru.relex.restaurant.web.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.relex.restaurant.service.DTO.IngredientPartFullDto;
 import ru.relex.restaurant.service.IIngredientPartService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 import ru.relex.restaurant.service.DTO.IngredientPartDto;
@@ -30,9 +31,9 @@ public class IngredientPartController {
         return ingredientPartService.findOneById(id);
     }
 
-    @PostMapping
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    private void createPart(@RequestBody IngredientPartDto dto){
+    private void createPart(@RequestBody IngredientPartFullDto dto){
         ingredientPartService.createIngredientPart(dto);
     }
 

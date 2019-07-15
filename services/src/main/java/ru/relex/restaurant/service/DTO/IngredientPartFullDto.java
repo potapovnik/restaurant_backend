@@ -1,20 +1,18 @@
 package ru.relex.restaurant.service.DTO;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
-public class IngredientPartDto {
+
+public class IngredientPartFullDto {
     private Integer id;
 
     private Double value;
     private Timestamp expirationDate;
 
-    //@JsonIgnore
-    //private IngredientDto ingredient;
+   // @JsonIgnore
+    private IngredientDto ingredient;
 
-    public IngredientPartDto() {
+    public IngredientPartFullDto() {
     }
 
 //    public IngredientPartDto(Integer id, Double value, Date expirationDate, IngredientDto ingredient) {
@@ -49,11 +47,11 @@ public class IngredientPartDto {
     }
 
     //@JsonIgnore
-//    public IngredientDto getIngredient() {
-//        return ingredient;
-//    }
-//
-//    public void setIngredient(IngredientDto ingredient) {
-//        this.ingredient = ingredient;
-//    }
+    public IngredientDto getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(IngredientDto ingredient) {
+        this.ingredient = ingredient;
+    }
 }
