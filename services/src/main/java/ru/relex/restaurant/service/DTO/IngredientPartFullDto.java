@@ -1,26 +1,16 @@
-package ru.relex.restaurant.db.entity;
+package ru.relex.restaurant.service.DTO;
 
-import javax.persistence.*;
 import java.sql.Date;
 
-@Entity
-@Table(name = "ingredient_parts")
-public class IngredientPart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredient_parts_seq")
-    @SequenceGenerator(name = "ingredient_parts_seq", sequenceName = "ingredient_parts_id_seq", allocationSize = 1)
+public class IngredientPartFullDto {
+
     private Integer id;
     private Double value;
     private Date expirationDate;
     private Integer ingredientId;
 
 
-    public IngredientPart() {
-    }
-
-    public IngredientPart(Double value, Date expirationDate) {
-        this.value = value;
-        this.expirationDate = expirationDate;
+    public IngredientPartFullDto() {
     }
 
     public Integer getId() {
@@ -54,5 +44,4 @@ public class IngredientPart {
     public void setIngredientId(Integer ingredientId) {
         this.ingredientId = ingredientId;
     }
-
 }

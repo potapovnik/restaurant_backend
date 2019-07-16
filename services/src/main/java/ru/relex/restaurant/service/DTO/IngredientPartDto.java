@@ -1,14 +1,12 @@
 package ru.relex.restaurant.service.DTO;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class IngredientPartDto {
     private Integer id;
-
     private Double value;
-    private LocalDateTime expirationDate;
+    private Date expirationDate;
 
-    private IngredientDto ingredient;
 
     public IngredientPartDto() {
     }
@@ -29,19 +27,12 @@ public class IngredientPartDto {
         this.value = value;
     }
 
-    public LocalDateTime getExpirationDate() {
+    public Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDateTime expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public IngredientDto getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(IngredientDto ingredient) {
-        this.ingredient = ingredient;
-    }
 }

@@ -1,27 +1,30 @@
 package ru.relex.restaurant.db.entity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
+
 
 @Entity
 @Table(name = "ingredients")
 public class Ingredient {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ingredients_seq")
-    @SequenceGenerator(name="ingredients_seq", sequenceName="ingredients_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredients_seq")
+    @SequenceGenerator(name = "ingredients_seq", sequenceName = "ingredients_id_seq", allocationSize = 1)
     private Integer id;
     private String name;
     private String measure;
 
-    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "ingredientId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<IngredientPart> parts;
 
-
-    //private Set<Dish> dishes;
-
     public Ingredient() {
+    }
+
+    public Ingredient(String name, String measure, List<IngredientPart> parts) {
+        this.name = name;
+        this.measure = measure;
+        this.parts = parts;
     }
 
     public Integer getId() {
@@ -54,5 +57,21 @@ public class Ingredient {
 
     public void setParts(List<IngredientPart> parts) {
         this.parts = parts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient that = (Ingredient) o;
+        return id.equals(that.id) &&
+                name.equals(that.name) &&
+                measure.equals(that.measure) &&
+                Objects.equals(parts, that.parts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, measure, parts);
     }
 }
