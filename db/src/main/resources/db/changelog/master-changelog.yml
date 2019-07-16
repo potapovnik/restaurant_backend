@@ -18,3 +18,11 @@ databaseChangeLog:
         - sqlFile:
             path: changesets/changeset_2.0.sql
             relativeToChangelogFile: true
+    - changeSet:
+        id: 3
+        author: mmamontov
+        comment: Fills ingredients, ingredient_parts tables
+        changes:
+          - sqlFile:
+              path: changesets/changeset_3.sql
+              relativeToChangelogFile: true
