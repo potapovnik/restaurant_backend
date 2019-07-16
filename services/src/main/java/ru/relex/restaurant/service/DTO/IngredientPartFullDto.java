@@ -1,26 +1,17 @@
 package ru.relex.restaurant.service.DTO;
 
-import java.sql.Timestamp;
-
+import java.sql.Date;
 
 public class IngredientPartFullDto {
+
     private Integer id;
-
     private Double value;
-    private Timestamp expirationDate;
+    private Date expirationDate;
+    private Integer ingredientId;
 
-   // @JsonIgnore
-    private IngredientDto ingredient;
 
     public IngredientPartFullDto() {
     }
-
-//    public IngredientPartDto(Integer id, Double value, Date expirationDate, IngredientDto ingredient) {
-//        this.id = id;
-//        this.value = value;
-//        this.expirationDate = expirationDate;
-//        this.ingredient = ingredient;
-//    }
 
     public Integer getId() {
         return id;
@@ -38,20 +29,19 @@ public class IngredientPartFullDto {
         this.value = value;
     }
 
-    public Timestamp getExpirationDate() {
+    public Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Timestamp expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    //@JsonIgnore
-    public IngredientDto getIngredient() {
-        return ingredient;
+    public Integer getIngredientId() {
+        return ingredientId;
     }
 
-    public void setIngredient(IngredientDto ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredientId(Integer ingredientId) {
+        this.ingredientId = ingredientId;
     }
 }

@@ -1,16 +1,13 @@
 package ru.relex.restaurant.service.DTO;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.List;
-import java.util.Set;
+
 
 public class IngredientDto {
     private Integer id;
     private String name;
     private String measure;
-
-    //@JsonIgnore
     private List<IngredientPartDto> parts;
 
     public IngredientDto() {
