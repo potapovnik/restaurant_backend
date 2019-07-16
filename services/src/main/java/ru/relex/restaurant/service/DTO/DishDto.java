@@ -9,15 +9,22 @@ public class DishDto {
     private Double cost;
     private String type;
     private Boolean ismenu;
-    private List<IngredientDto> ingredients;
+    private List<DishIngredientDto> dishIngredient;
 
-    public List<IngredientDto> getIngredients() {
-        return ingredients;
+    public List<DishIngredientDto> getDishIngredient() {
+        return dishIngredient;
     }
 
-    public void setIngredients(List<IngredientDto> ingredients) {
-        this.ingredients = ingredients;
+    public void setDishIngredient(List<DishIngredientDto> dishIngredients) {
+        this.dishIngredient = dishIngredients;
     }
+    //    private List<IngredientDto> ingredients;
+//    public List<IngredientDto> getIngredients() {
+//        return ingredients;
+//    }
+//    public void setIngredients(List<IngredientDto> ingredients) {
+//        this.ingredients = ingredients;
+//    }
 
     public Integer getId() {
         return id;

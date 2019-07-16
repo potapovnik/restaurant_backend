@@ -17,19 +17,27 @@ public class Dish {
     private String type;
     private Boolean ismenu;
 
-    @ManyToMany()
-    @JoinTable(name = "dish_ingredient",
-            joinColumns = @JoinColumn(name = "dish_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-    private List<Ingredient> ingredients;
+    @OneToMany(mappedBy = "dishId")
+    private List<DishIngredient> dishIngredient;
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public List<DishIngredient> getDishIngredients() {
+        return dishIngredient;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setDishIngredients(List<DishIngredient> dishIngredients) {
+        this.dishIngredient = dishIngredients;
     }
+//    @ManyToMany()
+//    @JoinTable(name = "dish_ingredient",
+//            joinColumns = @JoinColumn(name = "dish_id"),
+//            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+//    private List<Ingredient> ingredients;
+//    public List<Ingredient> getIngredients() {
+//        return ingredients;
+//    }
+//    public void setIngredients(List<Ingredient> ingredients) {
+//        this.ingredients = ingredients;
+//    }
 
     public Dish() {
     }

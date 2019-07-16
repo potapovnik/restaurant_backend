@@ -22,3 +22,14 @@ INSERT INTO dishes VALUES (3,  'Омлет', 150, 'первое', true);
 select nextval('dishes_id_seq');
 INSERT INTO dishes VALUES (4,  'Дранники', 80, 'первое', false);
 select nextval('dishes_id_seq');
+
+INSERT INTO dish_ingredient VALUES (1,1,0.8,1);
+select nextval('dish_ingredient_id_seq');
+INSERT INTO dish_ingredient VALUES (2,1,0.2,2);
+select nextval('dish_ingredient_id_seq');
+INSERT INTO dish_ingredient VALUES (3,2,3,3);
+select nextval('dish_ingredient_id_seq');
+INSERT INTO dish_ingredient VALUES (4,3,0.6,2);
+select nextval('dish_ingredient_id_seq');
+INSERT INTO dish_ingredient VALUES (5,3,2,3);
+select nextval('dish_ingredient_id_seq');
