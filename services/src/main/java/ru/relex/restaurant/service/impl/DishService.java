@@ -19,8 +19,8 @@ public class DishService implements IDishService {
     }
 
     @Override
-    public void createDish(DishDto dish) {
-
+    public void createDish(DishDto dto) {
+        dishRepository.save(mapper.fromDto(dto));
     }
 
     @Override
@@ -30,7 +30,7 @@ public class DishService implements IDishService {
 
     @Override
     public List<DishDto> listDishesAllTime() {
-        return null;
+        return mapper.toDto(dishRepository.findAll());
     }
 
     @Override

@@ -13,3 +13,12 @@ INSERT INTO ingredient_parts VALUES (3, 2, 1.2, '2019-07-18');
 select nextval('ingredient_parts_id_seq');
 INSERT INTO ingredient_parts VALUES (4, 2, 13, '2019-08-18');
 select nextval('ingredient_parts_id_seq');
+
+INSERT INTO dishes VALUES (1,  'Жаренная картошка', 100, 'первое', true);
+select nextval('dishes_id_seq');
+INSERT INTO dishes VALUES (2,  'Яичнеца', 120, 'первое', true);
+select nextval('dishes_id_seq');
+INSERT INTO dishes VALUES (3,  'Омлет', 150, 'первое', true);
+select nextval('dishes_id_seq');
+INSERT INTO dishes VALUES (4,  'Дранники', 80, 'первое', false);
+select nextval('dishes_id_seq');

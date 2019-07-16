@@ -9,7 +9,7 @@ import ru.relex.restaurant.service.IDishService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/dishes",
+@RequestMapping(path = "/restaurant/dishes",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DishController {

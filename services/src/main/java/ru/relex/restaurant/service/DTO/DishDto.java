@@ -1,6 +1,6 @@
 package ru.relex.restaurant.service.DTO;
 
-import java.util.Set;
+import java.util.List;
 
 public class DishDto {
 
@@ -9,13 +9,13 @@ public class DishDto {
     private Double cost;
     private String type;
     private Boolean ismenu;
-    private Set<IngredientDto> ingredients;
+    private List<IngredientDto> ingredients;
 
-    public Set<IngredientDto> getIngredients() {
+    public List<IngredientDto> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Set<IngredientDto> ingredients) {
+    public void setIngredients(List<IngredientDto> ingredients) {
         this.ingredients = ingredients;
     }
 

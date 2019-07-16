@@ -1,7 +1,7 @@
 package ru.relex.restaurant.db.entity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "dishes")
@@ -21,13 +21,13 @@ public class Dish {
     @JoinTable(name = "dish_ingredient",
             joinColumns = @JoinColumn(name = "dish_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-    private Set<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
 
-    public Set<Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
