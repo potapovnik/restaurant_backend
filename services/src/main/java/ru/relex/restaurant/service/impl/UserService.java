@@ -7,6 +7,9 @@ import ru.relex.restaurant.service.DTO.UserDto;
 import ru.relex.restaurant.service.IUserService;
 import ru.relex.restaurant.service.mapper.IUserMapper;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService implements IUserService {
     private final UsersRepository usersRepository;
@@ -19,15 +22,19 @@ public class UserService implements IUserService {
 
     @Override
     public UserDto getById(int id) {
-        Users user = usersRepository.findById(id).get();
+        Optional<Users> usersOptional = usersRepository.findById(id);
+        if (!usersOptional.isPresent()){
+            return null;
+        }
+        Users user = usersOptional.get();
         return userMapper.toDto(user);
 
     }
 
     @Override
     public boolean deleteById(int id) {
-        Users user = usersRepository.findById(id).get();
-        if (user == null) {
+        Optional<Users> usersOptional = usersRepository.findById(id);
+        if (!usersOptional.isPresent()) {
             return false;
         }
         usersRepository.deleteById(id);
@@ -55,5 +62,11 @@ public class UserService implements IUserService {
         Users updatedUser = usersRepository.save(userForUpdate);
         return userMapper.toDto(updatedUser);
 
+    }
+
+    @Override
+    public List<UserDto> getAll() {
+        List<Users> usersList = usersRepository.findAll();
+        return userMapper.toDto(usersList);
     }
 }
