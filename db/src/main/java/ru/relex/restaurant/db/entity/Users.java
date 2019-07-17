@@ -14,7 +14,7 @@ public class Users {
     private String password;
     private String name;
     private String surname;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Roles role;
 

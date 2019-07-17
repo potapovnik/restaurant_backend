@@ -10,8 +10,7 @@ import ru.relex.restaurant.service.impl.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value =
-        "/users")
+@RequestMapping(value = "/users")
 public class UsersController {
     private final UserService userService;
 
@@ -19,7 +18,8 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping(value = "{id}")
+
     public UserDto getById(@PathVariable("id") int id) {
         UserDto userDto = userService.getById(id);
         if (userDto == null) {

@@ -8,13 +8,15 @@ public class UserDto {
     private String password;
     private String name;
     private String surname;
+    private Roles roleDto;
     public UserDto(){}
-    public UserDto(int id, String login, String password, String name, String surname) {
+    public UserDto(int id, String login, String password, String name, String surname, Roles role, Roles roleDto) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
+        this.roleDto = roleDto;
     }
 
     public int getId() {
@@ -55,5 +57,15 @@ public class UserDto {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+
+
+    public Roles getRoleDto() {
+        return roleDto;
+    }
+
+    public void setRoleDto(Roles roleDto) {
+        this.roleDto = roleDto;
     }
 }

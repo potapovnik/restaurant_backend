@@ -13,8 +13,8 @@ public class Roles {
     @SequenceGenerator(name = "roles_seq", sequenceName = "rol_id_seq", allocationSize = 1)
     private int id;
     private String name;
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Users> usersList;
+    //@OneToMany(fetch = FetchType.LAZY)
+    //private List<Users> usersList;
 
     public Roles() {
     }
@@ -58,11 +58,5 @@ public class Roles {
         return Objects.hash(id, name);
     }
 
-    public List<Users> getUsersList() {
-        return usersList;
-    }
 
-    public void setUsersList(List<Users> usersList) {
-        this.usersList = usersList;
-    }
 }

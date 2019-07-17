@@ -18,3 +18,11 @@ databaseChangeLog:
         - sqlFile:
             path: changesets/changeset_2.0.sql
             relativeToChangelogFile: true
+    - changeSet:
+        id: 3
+        author: potapov
+        comment: insert data for table roles and users
+        changes:
+        - sqlFile:
+            path: changesets/changeset_3.0.sql
+            relativeToChangelogFile: true
