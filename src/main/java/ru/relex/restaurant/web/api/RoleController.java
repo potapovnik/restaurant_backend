@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.relex.restaurant.service.DTO.RoleDTO;
 import ru.relex.restaurant.service.impl.RoleService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value =
-        "/roles", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/roles")
 public class RoleController {
     private final RoleService roleService;
 
@@ -24,4 +24,9 @@ public class RoleController {
         }
         return roleDTO;
     }
+    @GetMapping("/allUsers")
+    public List<RoleDTO> getAll(){
+        return roleService.getALL();
+    }
+
 }

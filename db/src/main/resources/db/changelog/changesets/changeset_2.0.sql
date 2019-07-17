@@ -9,7 +9,6 @@ create table roles
 
 alter table roles owner to postgres
 ;
-
 create table users
 (
 	id serial not null
@@ -27,6 +26,12 @@ create table users
 
 alter table users owner to postgres
 ;
+
+create unique index users_login_uindex
+	on users (login)
+;
+
+
 
 create table waiter_orders
 (
@@ -90,7 +95,8 @@ create table order_dish
 			references dishes,
 	order_id integer not null
 		constraint order_dish_order_id_fkey
-			references orders
+			references orders,
+	count integer
 )
 ;
 

@@ -8,15 +8,15 @@ public class UserDto {
     private String password;
     private String name;
     private String surname;
-    private Roles roleDto;
+    private int role_id;
     public UserDto(){}
-    public UserDto(int id, String login, String password, String name, String surname, Roles role, Roles roleDto) {
+    public UserDto(int id, String login, String password, String name, String surname,  int role_id) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.roleDto = roleDto;
+        this.role_id = role_id;
     }
 
     public int getId() {
@@ -61,11 +61,11 @@ public class UserDto {
 
 
 
-    public Roles getRoleDto() {
-        return roleDto;
+    public int getRole_id() {
+        return role_id;
     }
 
-    public void setRoleDto(Roles roleDto) {
-        this.roleDto = roleDto;
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
     }
 }

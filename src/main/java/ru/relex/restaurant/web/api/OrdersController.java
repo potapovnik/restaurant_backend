@@ -9,8 +9,7 @@ import ru.relex.restaurant.service.impl.OrdersService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value =
-        "/orders")
+@RequestMapping(value = "/orders")
 public class OrdersController {
     private final OrdersService ordersService;
 

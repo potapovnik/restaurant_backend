@@ -8,6 +8,8 @@ import ru.relex.restaurant.service.DTO.RoleDTO;
 import ru.relex.restaurant.service.IRoleService;
 import ru.relex.restaurant.service.mapper.IRoleMapper;
 
+import javax.management.relation.Role;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,4 +31,11 @@ public class RoleService implements IRoleService {
         }
         return roleMapper.toDto(rolesOptional.get());
     }
+
+    @Override
+    public List<RoleDTO> getALL() {
+        List<Roles> roleList = repository.findAll();
+        return roleMapper.toDto(roleList);
+    }
+
 }
