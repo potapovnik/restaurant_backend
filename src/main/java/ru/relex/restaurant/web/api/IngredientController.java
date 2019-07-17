@@ -9,7 +9,7 @@ import ru.relex.restaurant.service.DTO.IngredientDto;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/restaurant/ingredients",
+@RequestMapping(path = "/ingredients",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )

@@ -11,7 +11,7 @@ import ru.relex.restaurant.service.DTO.IngredientPartDto;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/restaurant/ingredientparts",
+@RequestMapping(path = "/ingredientparts",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class IngredientPartController {

@@ -11,7 +11,7 @@ import ru.relex.restaurant.service.IDishService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/restaurant/dishes",
+@RequestMapping(path = "/dishes",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DishController {
