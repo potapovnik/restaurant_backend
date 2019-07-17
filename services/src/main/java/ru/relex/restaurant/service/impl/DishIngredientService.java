@@ -27,6 +27,6 @@ public class DishIngredientService implements IDishIngredientService {
 
     @Override
     public List<DishIngredientDto> listDishIngredients() {
-        return mapper.toDto(repository.findAll());
+        return mapper.toDto(repository.findAll());//mapper.toDto(repository.findAll());
     }
 }

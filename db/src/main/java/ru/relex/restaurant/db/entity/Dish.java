@@ -1,7 +1,9 @@
 package ru.relex.restaurant.db.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "dishes")
@@ -17,30 +19,37 @@ public class Dish {
     private String type;
     private Boolean ismenu;
 
-    @OneToMany(mappedBy = "dishId")
-    private List<DishIngredient> dishIngredient;
+    @ElementCollection
+    @CollectionTable(name = "dish_ingredient", joinColumns = @JoinColumn(name = "dish_id"))
+    @Column(name="value")
+    private List<Double> values = new ArrayList<>();
 
-    public List<DishIngredient> getDishIngredients() {
-        return dishIngredient;
+    public List<Double> getValues() {
+        return values;
     }
 
-    public void setDishIngredients(List<DishIngredient> dishIngredients) {
-        this.dishIngredient = dishIngredients;
+    public void setValues(List<Double> values) {
+        this.values = values;
     }
-//    @ManyToMany()
-//    @JoinTable(name = "dish_ingredient",
-//            joinColumns = @JoinColumn(name = "dish_id"),
-//            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-//    private List<Ingredient> ingredients;
-//    public List<Ingredient> getIngredients() {
-//        return ingredients;
-//    }
-//    public void setIngredients(List<Ingredient> ingredients) {
-//        this.ingredients = ingredients;
-//    }
+//    @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+//    private List<DishIngredient> dishIngredient3 = new ArrayList<>();
+
+
+    @ManyToMany()
+    @JoinTable(name = "dish_ingredient",
+            joinColumns = @JoinColumn(name = "dish_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private List<Ingredient> ingredients;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public Dish() {
     }
+
 
     public Integer getId() {
         return id;
@@ -80,5 +89,24 @@ public class Dish {
 
     public void setIsmenu(Boolean ismenu) {
         this.ismenu = ismenu;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dish dish = (Dish) o;
+        return Objects.equals(id, dish.id) &&
+                Objects.equals(name, dish.name) &&
+                Objects.equals(cost, dish.cost) &&
+                Objects.equals(type, dish.type) &&
+                Objects.equals(ismenu, dish.ismenu) &&
+                Objects.equals(values, dish.values) &&
+                Objects.equals(ingredients, dish.ingredients);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, cost, type, ismenu, values, ingredients);
     }
 }
