@@ -10,37 +10,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value =
-        "/cookorders")
+    "/cookorders")
 public class CookOrdersController {
-    private final CookOrdersService cookOrdersService;
+  private final CookOrdersService cookOrdersService;
 
-    public CookOrdersController(CookOrdersService cookOrdersService) {
-        this.cookOrdersService = cookOrdersService;
-    }
-    @GetMapping("{id}")
-    public CookOrdersDto getByid(@PathVariable("id") int id){
-        CookOrdersDto ordersDto = cookOrdersService.getById(id);
-        if (ordersDto == null){
-            return null;
-        }
-        return ordersDto;
-    }
-    @GetMapping("/getAll")
-    public List<CookOrdersDto> getAll(){
-        return cookOrdersService.getAll();
-    }
-    @PostMapping
-    public boolean insert(@RequestBody CookOrdersDto cookOrdersDto){
-        boolean IsDone = cookOrdersService.insert(cookOrdersDto);
-        return IsDone;
+  public CookOrdersController(CookOrdersService cookOrdersService) {
+    this.cookOrdersService = cookOrdersService;
+  }
 
+  @GetMapping("{id}")
+  public CookOrdersDto getByid(@PathVariable("id") int id) {
+    CookOrdersDto ordersDto = cookOrdersService.getById(id);
+    if (ordersDto == null) {
+      return null;
     }
-    @PutMapping
-    public CookOrdersDto update(@PathVariable CookOrdersDto cookOrdersDto){
-        CookOrdersDto updatedOrders = cookOrdersService.update(cookOrdersDto);
-        if (updatedOrders == null){
-            return null;
-        }
-        return updatedOrders;
+    return ordersDto;
+  }
+
+  @GetMapping("/getAll")
+  public List<CookOrdersDto> getAll() {
+    return cookOrdersService.getAll();
+  }
+
+  @PostMapping
+  public boolean insert(@RequestBody CookOrdersDto cookOrdersDto) {
+    boolean IsDone = cookOrdersService.insert(cookOrdersDto);
+    return IsDone;
+
+  }
+
+  @PutMapping
+  public CookOrdersDto update(@PathVariable CookOrdersDto cookOrdersDto) {
+    CookOrdersDto updatedOrders = cookOrdersService.update(cookOrdersDto);
+    if (updatedOrders == null) {
+      return null;
     }
+    return updatedOrders;
+  }
 }

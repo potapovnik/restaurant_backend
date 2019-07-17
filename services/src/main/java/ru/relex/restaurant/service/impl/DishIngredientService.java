@@ -12,21 +12,21 @@ import java.util.List;
 
 @Service
 public class DishIngredientService implements IDishIngredientService {
-    private final IDishIngredientMapper mapper;
-    private final DishIngredientRepository repository;
+  private final IDishIngredientMapper mapper;
+  private final DishIngredientRepository repository;
 
-    public DishIngredientService(IDishIngredientMapper mapper, DishIngredientRepository repository) {
-        this.mapper = mapper;
-        this.repository = repository;
-    }
+  public DishIngredientService(IDishIngredientMapper mapper, DishIngredientRepository repository) {
+    this.mapper = mapper;
+    this.repository = repository;
+  }
 
-    @Override
-    public void createDishIngredient(DishIngredientDto dto) {
-        repository.save(mapper.fromDto(dto));
-    }
+  @Override
+  public void createDishIngredient(DishIngredientDto dto) {
+    repository.save(mapper.fromDto(dto));
+  }
 
-    @Override
-    public List<DishIngredientDto> listDishIngredients() {
-        return mapper.toDto(repository.findAll());//mapper.toDto(repository.findAll());
-    }
+  @Override
+  public List<DishIngredientDto> listDishIngredients() {
+    return mapper.toDto(repository.findAll());//mapper.toDto(repository.findAll());
+  }
 }

@@ -12,33 +12,33 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/ingredientparts",
-        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+    produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class IngredientPartController {
-    private final IIngredientPartService ingredientPartService;
+  private final IIngredientPartService ingredientPartService;
 
-    public IngredientPartController(IIngredientPartService ingredientPartService) {
-        this.ingredientPartService = ingredientPartService;
-    }
+  public IngredientPartController(IIngredientPartService ingredientPartService) {
+    this.ingredientPartService = ingredientPartService;
+  }
 
-    @GetMapping
-    public List<IngredientPartDto> listIngredientParts() {
-        return ingredientPartService.listIngredientParts();
-    }
+  @GetMapping
+  public List<IngredientPartDto> listIngredientParts() {
+    return ingredientPartService.listIngredientParts();
+  }
 
-    @GetMapping("/{id}")
-    public IngredientPartDto oneIngredientPart(@PathVariable("id") int id) {
-        return ingredientPartService.findOneById(id);
-    }
+  @GetMapping("/{id}")
+  public IngredientPartDto oneIngredientPart(@PathVariable("id") int id) {
+    return ingredientPartService.findOneById(id);
+  }
 
-    @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
-    private void createPart(@RequestBody IngredientPartFullDto dto) {
-        ingredientPartService.createIngredientPart(dto);
-    }
+  @PostMapping()
+  @ResponseStatus(HttpStatus.CREATED)
+  private void createPart(@RequestBody IngredientPartFullDto dto) {
+    ingredientPartService.createIngredientPart(dto);
+  }
 
-    @DeleteMapping("/{id}")
-    public void deletePart(@PathVariable("id") int id) {
-        ingredientPartService.deleteIngredientPart(id);
-    }
+  @DeleteMapping("/{id}")
+  public void deletePart(@PathVariable("id") int id) {
+    ingredientPartService.deleteIngredientPart(id);
+  }
 }

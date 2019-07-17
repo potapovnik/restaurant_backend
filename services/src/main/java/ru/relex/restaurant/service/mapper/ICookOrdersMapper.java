@@ -10,11 +10,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ICookOrdersMapper {
 
-    CookOrders fromDto(CookOrdersDto cookOrdersDto);
+  CookOrders fromDto(CookOrdersDto cookOrdersDto);
 
-    CookOrdersDto toDto(CookOrders cookOrders);
+  CookOrdersDto toDto(CookOrders cookOrders);
 
-    List<CookOrders> fromDto(List<CookOrdersDto> cookOrdersDtoList);
+  List<CookOrders> fromDto(List<CookOrdersDto> cookOrdersDtoList);
 
-    List<CookOrdersDto> toDto(List<CookOrders> cookOrdersl);
+  List<CookOrdersDto> toDto(List<CookOrders> cookOrdersl);
 }

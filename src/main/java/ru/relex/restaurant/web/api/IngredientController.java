@@ -10,29 +10,29 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/ingredients",
-        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+    consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+    produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )
 public class IngredientController {
-    private final IIngredientService ingredientService;
+  private final IIngredientService ingredientService;
 
-    public IngredientController(IIngredientService ingredientService) {
-        this.ingredientService = ingredientService;
-    }
+  public IngredientController(IIngredientService ingredientService) {
+    this.ingredientService = ingredientService;
+  }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createIngredient(@RequestBody IngredientDto ingredientDto) {
-        ingredientService.createIngredient(ingredientDto);
-    }
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public void createIngredient(@RequestBody IngredientDto ingredientDto) {
+    ingredientService.createIngredient(ingredientDto);
+  }
 
-    @GetMapping
-    public List<IngredientDto> listIngredients() {
-        return ingredientService.listIngredients();
-    }
+  @GetMapping
+  public List<IngredientDto> listIngredients() {
+    return ingredientService.listIngredients();
+  }
 
-    @DeleteMapping("/{id}")
-    public void removeIngredient(@PathVariable("id") int id) {
-        ingredientService.deleteIngredient(id);
-    }
+  @DeleteMapping("/{id}")
+  public void removeIngredient(@PathVariable("id") int id) {
+    ingredientService.deleteIngredient(id);
+  }
 }

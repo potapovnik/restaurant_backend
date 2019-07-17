@@ -12,21 +12,22 @@ import java.util.Optional;
 
 @Service
 public class RoleService implements IRoleService {
-    private final RolesRepository repository;
-    private final IRoleMapper roleMapper;
-    @Autowired
-    public RoleService(RolesRepository repository, IRoleMapper roleMapper){
-        this.repository = repository;
-        this.roleMapper = roleMapper;
-    }
+  private final RolesRepository repository;
+  private final IRoleMapper roleMapper;
+
+  @Autowired
+  public RoleService(RolesRepository repository, IRoleMapper roleMapper) {
+    this.repository = repository;
+    this.roleMapper = roleMapper;
+  }
 
 
-    @Override
-    public RoleDTO getById(int id) {
-        Optional<Roles> rolesOptional = repository.findById(id);
-        if (!rolesOptional.isPresent()){
-            return null;
-        }
-        return roleMapper.toDto(rolesOptional.get());
+  @Override
+  public RoleDTO getById(int id) {
+    Optional<Roles> rolesOptional = repository.findById(id);
+    if (!rolesOptional.isPresent()) {
+      return null;
     }
+    return roleMapper.toDto(rolesOptional.get());
+  }
 }

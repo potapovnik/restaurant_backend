@@ -7,25 +7,25 @@ import ru.relex.restaurant.service.ITestService;
 
 @RestController
 @RequestMapping(value =
-        "/hello", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    "/hello", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+    produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class MainController {
 
 
-    private final ITestService service;
+  private final ITestService service;
 
-    public MainController(ITestService service) {
-        this.service = service;
+  public MainController(ITestService service) {
+    this.service = service;
+  }
+
+
+  @GetMapping
+  public RoleDTO getByID(@RequestParam("id") int id) {
+    RoleDTO roleDTO = null;
+    if (roleDTO == null) {
+      return null;//изменить на ошибку
     }
-
-
-    @GetMapping
-    public RoleDTO getByID(@RequestParam("id") int id) {
-        RoleDTO roleDTO = null;
-        if (roleDTO == null) {
-            return null;//изменить на ошибку
-        }
-        return roleDTO;
-    }
+    return roleDTO;
+  }
 
 }
