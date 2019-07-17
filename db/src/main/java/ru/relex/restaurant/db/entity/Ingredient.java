@@ -18,6 +18,8 @@ public class Ingredient {
     @OneToMany(mappedBy = "ingredientId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<IngredientPart> parts;
 
+
+
     public Ingredient() {
     }
 
