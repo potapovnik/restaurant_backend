@@ -9,6 +9,7 @@ create table roles
 
 alter table roles owner to postgres
 ;
+
 create table users
 (
 	id serial not null

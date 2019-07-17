@@ -13,38 +13,38 @@ import java.util.List;
 
 @Service
 public class IngredientPartService implements IIngredientPartService {
-    private final IIngredientPartMapper mapper;
-    private final IIngredientPartFullMapper mapperFull;
-    private final IngredientPartRepository repository;
+  private final IIngredientPartMapper mapper;
+  private final IIngredientPartFullMapper mapperFull;
+  private final IngredientPartRepository repository;
 
-    public IngredientPartService(IIngredientPartMapper mapper, IngredientPartRepository repository, IIngredientPartFullMapper mapperFull) {
-        this.mapper = mapper;
-        this.repository = repository;
-        this.mapperFull = mapperFull;
-    }
+  public IngredientPartService(IIngredientPartMapper mapper, IngredientPartRepository repository, IIngredientPartFullMapper mapperFull) {
+    this.mapper = mapper;
+    this.repository = repository;
+    this.mapperFull = mapperFull;
+  }
 
-    @Override
-    public List<IngredientPartDto> listIngredientParts() {
-        return mapper.toDto(repository.findAll());
-    }
+  @Override
+  public List<IngredientPartDto> listIngredientParts() {
+    return mapper.toDto(repository.findAll());
+  }
 
-    @Override
-    public IngredientPartDto findOneById(int id) {
-        return mapper.toDto(repository.findById(id).orElse(null));
-    }
+  @Override
+  public IngredientPartDto findOneById(int id) {
+    return mapper.toDto(repository.findById(id).orElse(null));
+  }
 
-    @Override
-    public void createIngredientPart(IngredientPartFullDto dto) {
-        repository.save(mapperFull.fromDto(dto));
-    }
+  @Override
+  public void createIngredientPart(IngredientPartFullDto dto) {
+    repository.save(mapperFull.fromDto(dto));
+  }
 
-    @Override
-    public void updateIngredientPart(IngredientPartDto dto) {
+  @Override
+  public void updateIngredientPart(IngredientPartDto dto) {
 
-    }
+  }
 
-    @Override
-    public void deleteIngredientPart(int id) {
-        repository.deleteById(id);
-    }
+  @Override
+  public void deleteIngredientPart(int id) {
+    repository.deleteById(id);
+  }
 }

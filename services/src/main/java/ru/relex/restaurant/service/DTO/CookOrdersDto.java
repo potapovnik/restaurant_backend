@@ -3,50 +3,52 @@ package ru.relex.restaurant.service.DTO;
 import java.util.Date;
 
 public class CookOrdersDto {
-    private int id;
-    private Date timeOfTake;
-    private Date timeOfGiven;
-    private boolean isReady;
+  private int id;
+  private Date timeOfTake;
+  private Date timeOfGiven;
+  private boolean isReady;
 
-    public CookOrdersDto(){}
-    public CookOrdersDto(int id, Date timeOfTake, Date timeOfGiven, boolean isReady) {
-        this.id = id;
-        this.timeOfTake = timeOfTake;
-        this.timeOfGiven = timeOfGiven;
-        this.isReady = isReady;
-    }
+  public CookOrdersDto() {
+  }
 
-    public int getId() {
-        return id;
-    }
+  public CookOrdersDto(int id, Date timeOfTake, Date timeOfGiven, boolean isReady) {
+    this.id = id;
+    this.timeOfTake = timeOfTake;
+    this.timeOfGiven = timeOfGiven;
+    this.isReady = isReady;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public Date getTimeOfTake() {
-        return timeOfTake;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setTimeOfTake(Date timeOfTake) {
-        this.timeOfTake = timeOfTake;
-    }
+  public Date getTimeOfTake() {
+    return timeOfTake;
+  }
 
-    public Date getTimeOfGiven() {
-        return timeOfGiven;
-    }
+  public void setTimeOfTake(Date timeOfTake) {
+    this.timeOfTake = timeOfTake;
+  }
 
-    public void setTimeOfGiven(Date timeOfGiven) {
-        this.timeOfGiven = timeOfGiven;
-    }
+  public Date getTimeOfGiven() {
+    return timeOfGiven;
+  }
 
-    public boolean isReady() {
-        return isReady;
-    }
+  public void setTimeOfGiven(Date timeOfGiven) {
+    this.timeOfGiven = timeOfGiven;
+  }
 
-    public void setReady(boolean ready) {
-        isReady = ready;
-    }
+  public boolean isReady() {
+    return isReady;
+  }
+
+  public void setReady(boolean ready) {
+    isReady = ready;
+  }
 
 
 }

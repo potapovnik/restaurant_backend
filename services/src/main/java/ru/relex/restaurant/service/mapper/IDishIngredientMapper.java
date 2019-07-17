@@ -8,8 +8,11 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface IDishIngredientMapper {
-    DishIngredientDto toDto(DishIngredient dish);
-    DishIngredient fromDto(DishIngredientDto dto);
-    List<DishIngredientDto> toDto(List<DishIngredient> dishes);
-    List<DishIngredient> fromDto(List<DishIngredientDto> dtos);
+  DishIngredientDto toDto(DishIngredient dish);
+
+  DishIngredient fromDto(DishIngredientDto dto);
+
+  List<DishIngredientDto> toDto(List<DishIngredient> dishes);
+
+  List<DishIngredient> fromDto(List<DishIngredientDto> dtos);
 }

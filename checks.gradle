@@ -4,42 +4,20 @@ import javax.xml.transform.stream.StreamSource
 
 import static org.gradle.api.tasks.PathSensitivity.NONE
 
-buildscript {
-  repositories {
-    ext {
-      spotbugs_ver = "2.0.0"
-    }
-
-    repositories {
-      maven {
-        url "https://plugins.gradle.org/m2/"
-      }
-    }
-    dependencies {
-      classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:$spotbugs_ver"
-    }
-  }
-}
-
-
-plugins {
-  id 'java'
-  id 'org.springframework.boot' version '2.1.6.RELEASE'
-}
-
 allprojects {
   ext {
-    springboot_ver = "2.1.6.RELEASE"
     pmd_tool_ver = "6.16.0"
     checkstyle_tool_ver = "8.21"
     spotbugs_tool_ver = "4.0.0-beta3"
   }
+
   apply {
     plugin 'pmd'
     plugin 'checkstyle'
     plugin 'idea'
     plugin 'com.github.spotbugs'
   }
+
   pmd {
     ignoreFailures = false
     rulePriority = 2
@@ -55,6 +33,7 @@ allprojects {
       }
     }
   }
+
   spotbugs {
     effort = "max"
     reportLevel = "high"
@@ -78,6 +57,7 @@ allprojects {
       }
     }
   }
+
   task copyPmdReport(type: Copy) {
     from "$buildDir/reports/pmd"
     into "${rootProject.buildDir}/reports/pmd"
@@ -92,6 +72,7 @@ allprojects {
     }
   }
 
+
   task copySpotBugsReports(type: Copy) {
     from "$buildDir/reports/spotbugs"
     into "${rootProject.buildDir}/reports/spotbugs/"
@@ -104,6 +85,7 @@ allprojects {
       }
     }
   }
+
   task copyCheckstyleReports(type: Copy) {
     from "$buildDir/reports/checkstyle"
     into "${rootProject.buildDir}/reports/checkstyle/"
@@ -118,6 +100,7 @@ allprojects {
       }
     }
   }
+
   spotbugsMain {
     reports {
       xml.withMessages true
@@ -139,30 +122,16 @@ allprojects {
     spotbugsMain.finalizedBy spotbugsMainHtmlReport
     spotbugsMainHtmlReport.finalizedBy copySpotBugsReports
   }
+
   pmdMain.finalizedBy copyPmdReport
   checkstyleMain.finalizedBy copyCheckstyleReports
 
   task lint {
     dependsOn spotbugsMain, pmdMain, checkstyleMain
   }
-  version '1.0-SNAPSHOT'
-  group 'ru.relex'
-
-  sourceCompatibility = JavaVersion.VERSION_11
-
-  repositories {
-    jcenter()
-    mavenCentral()
-  }
-}
-
-subprojects {
-  apply plugin: "java-library"
 }
 
 
-dependencies {
-  implementation project(":services")
-  implementation "org.springframework.boot:spring-boot-starter-web:$springboot_ver"
-  //testCompile group: 'junit', name: 'junit', version: '4.12'
-}
+
+
+

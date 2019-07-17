@@ -8,34 +8,34 @@ import ru.relex.restaurant.service.DTO.RoleDTO;
 import ru.relex.restaurant.service.IRoleService;
 import ru.relex.restaurant.service.mapper.IRoleMapper;
 
-import javax.management.relation.Role;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class RoleService implements IRoleService {
-    private final RolesRepository repository;
-    private final IRoleMapper roleMapper;
-    @Autowired
-    public RoleService(RolesRepository repository, IRoleMapper roleMapper){
-        this.repository = repository;
-        this.roleMapper = roleMapper;
-    }
+  private final RolesRepository repository;
+  private final IRoleMapper roleMapper;
+
+  @Autowired
+  public RoleService(RolesRepository repository, IRoleMapper roleMapper) {
+    this.repository = repository;
+    this.roleMapper = roleMapper;
+  }
 
 
-    @Override
-    public RoleDTO getById(int id) {
-        Optional<Roles> rolesOptional = repository.findById(id);
-        if (!rolesOptional.isPresent()){
-            return null;
-        }
-        return roleMapper.toDto(rolesOptional.get());
+  @Override
+  public RoleDTO getById(int id) {
+    Optional<Roles> rolesOptional = repository.findById(id);
+    if (!rolesOptional.isPresent()) {
+      return null;
     }
+    return roleMapper.toDto(rolesOptional.get());
+  }
 
-    @Override
-    public List<RoleDTO> getALL() {
-        List<Roles> roleList = repository.findAll();
-        return roleMapper.toDto(roleList);
-    }
+  @Override
+  public List<RoleDTO> getALL() {
+    List<Roles> roleList = repository.findAll();
+    return roleMapper.toDto(roleList);
+  }
 
 }
