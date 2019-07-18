@@ -10,14 +10,15 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/orderDish")
 public class OrderDishController {
-    private final OrderDishService orderDishService;
+  private final OrderDishService orderDishService;
 
-    public OrderDishController(OrderDishService orderDishService) {
-        this.orderDishService = orderDishService;
-    }
-    @PostMapping()
-    public boolean insertAll(@RequestBody List<OrderDishDto> orderDishDtoList){
-        boolean isDone = orderDishService.insert(orderDishDtoList);
-        return isDone;
-    }
+  public OrderDishController(OrderDishService orderDishService) {
+    this.orderDishService = orderDishService;
+  }
+
+  @PostMapping()
+  public boolean insertAll(@RequestBody List<OrderDishDto> orderDishDtoList) {
+    boolean isDone = orderDishService.insert(orderDishDtoList);
+    return isDone;
+  }
 }

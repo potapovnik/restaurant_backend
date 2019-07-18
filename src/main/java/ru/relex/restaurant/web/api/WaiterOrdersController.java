@@ -33,8 +33,8 @@ public class WaiterOrdersController {
 
   @PostMapping
   public boolean insert(@RequestBody WaiterOrdersDto waiterOrdersDto) {
-    boolean IsDone = waiterOrdersService.insert(waiterOrdersDto);
-    return IsDone;
+    boolean isDone = waiterOrdersService.insert(waiterOrdersDto);
+    return isDone;
 
   }
 

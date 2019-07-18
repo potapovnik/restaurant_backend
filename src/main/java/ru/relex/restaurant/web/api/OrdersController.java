@@ -12,35 +12,39 @@ import java.util.List;
 @RequestMapping(value =
     "/orders")
 public class OrdersController {
-    private final OrdersService ordersService;
+  private final OrdersService ordersService;
 
-    public OrdersController(OrdersService ordersService) {
-        this.ordersService = ordersService;
-    }
-    @GetMapping("{id}")
-    public OrdersDto getByid(@PathVariable("id") int id){
-        OrdersDto ordersDto = ordersService.getById(id);
-        if (ordersDto == null){
-            return null;
-        }
-        return ordersDto;
-    }
-    @GetMapping("/getAll")
-    public List<OrdersDto> getAll(){
-        return ordersService.getAll();
-    }
-    @PostMapping
-    public boolean insert(@RequestBody OrdersDto ordersDto){
-        boolean IsDone = ordersService.insert(ordersDto);
-        return IsDone;
+  public OrdersController(OrdersService ordersService) {
+    this.ordersService = ordersService;
+  }
 
+  @GetMapping("{id}")
+  public OrdersDto getByid(@PathVariable("id") int id) {
+    OrdersDto ordersDto = ordersService.getById(id);
+    if (ordersDto == null) {
+      return null;
     }
-    @PutMapping
-    public OrdersDto update(@PathVariable OrdersDto ordersDto){
-        OrdersDto updatedOrders = ordersService.update(ordersDto);
-        if (updatedOrders == null){
-            return null;
-        }
-        return updatedOrders;
+    return ordersDto;
+  }
+
+  @GetMapping("/getAll")
+  public List<OrdersDto> getAll() {
+    return ordersService.getAll();
+  }
+
+  @PostMapping
+  public boolean insert(@RequestBody OrdersDto ordersDto) {
+    boolean isDone = ordersService.insert(ordersDto);
+    return isDone;
+
+  }
+
+  @PutMapping
+  public OrdersDto update(@PathVariable OrdersDto ordersDto) {
+    OrdersDto updatedOrders = ordersService.update(ordersDto);
+    if (updatedOrders == null) {
+      return null;
     }
+    return updatedOrders;
+  }
 }

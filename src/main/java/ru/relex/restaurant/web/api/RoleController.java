@@ -10,23 +10,24 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/roles")
 public class RoleController {
-    private final RoleService roleService;
+  private final RoleService roleService;
 
-    public RoleController(RoleService roleService) {
-        this.roleService = roleService;
-    }
+  public RoleController(RoleService roleService) {
+    this.roleService = roleService;
+  }
 
-    @GetMapping("/{id}")
-    public RoleDTO getByID(@PathVariable("id") int id) {
-        RoleDTO roleDTO = roleService.getById(id);
-        if (roleDTO == null) {
-            return null;//изменить на ошибку
-        }
-        return roleDTO;
+  @GetMapping("/{id}")
+  public RoleDTO getByID(@PathVariable("id") int id) {
+    RoleDTO roleDTO = roleService.getById(id);
+    if (roleDTO == null) {
+      return null;//изменить на ошибку
     }
-    @GetMapping("/allUsers")
-    public List<RoleDTO> getAll(){
-        return roleService.getALL();
-    }
+    return roleDTO;
+  }
+
+  @GetMapping("/allUsers")
+  public List<RoleDTO> getAll() {
+    return roleService.getALL();
+  }
 
 }
