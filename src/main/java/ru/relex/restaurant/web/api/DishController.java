@@ -17,6 +17,7 @@ import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(path = "/dishes",
@@ -40,6 +41,11 @@ public class DishController {
   @GetMapping
   public List<DishDto> listDishesAllTime() {
     return dishService.listDishesAllTime();
+  }
+
+  @GetMapping("/inmenu")
+  public List<DishDto> listDishesInMenu() {
+    return dishService.listDishesInMenu();
   }
 
   @GetMapping("/d")

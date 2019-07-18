@@ -14,18 +14,18 @@ public class Users {
   private String password;
   private String name;
   private String surname;
-  private int role_id;
+  private int roleId;
 
   public Users() {
   }
 
-  public Users(int id, String login, String password, String name, String surname, int role_id) {
+  public Users(int id, String login, String password, String name, String surname, int roleId) {
     this.id = id;
     this.login = login;
     this.password = password;
     this.name = name;
     this.surname = surname;
-    this.role_id = role_id;
+    this.roleId = roleId;
   }
 
   public int getId() {
@@ -82,14 +82,14 @@ public class Users {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, login, password, name, surname, role_id);
+    return Objects.hash(id, login, password, name, surname, roleId);
   }
 
-  public int getRole_id() {
-    return role_id;
+  public int getRoleId() {
+    return roleId;
   }
 
-  public void setRole_id(int role_id) {
-    this.role_id = role_id;
+  public void setRoleId(int roleId) {
+    this.roleId = roleId;
   }
 }

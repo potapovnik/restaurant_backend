@@ -1,6 +1,7 @@
 package ru.relex.restaurant.service;
 
 
+import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 
 
@@ -15,4 +16,6 @@ public interface IIngredientService {
   void updateIngredient(IngredientDto ingredientDto);
 
   void deleteIngredient(Integer id);
+
+  List<IngredientDto> getMissingIngredients(List<DishDto> dishesInMenu);
 }

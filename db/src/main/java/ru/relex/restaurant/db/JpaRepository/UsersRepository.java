@@ -6,5 +6,5 @@ import ru.relex.restaurant.db.entity.Users;
 import java.util.List;
 
 public interface UsersRepository extends JpaRepository<Users, Integer> {
-  public List<Users> findByRole_id(int id);
+  public List<Users> findByRoleId(int id);
 }

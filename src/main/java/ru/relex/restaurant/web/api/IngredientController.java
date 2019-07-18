@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.IIngredientService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 
@@ -22,9 +23,11 @@ import java.util.List;
 )
 public class IngredientController {
   private final IIngredientService ingredientService;
+  private final IDishService dishService;
 
-  public IngredientController(IIngredientService ingredientService) {
+  public IngredientController(IIngredientService ingredientService, IDishService dishService) {
     this.ingredientService = ingredientService;
+    this.dishService = dishService;
   }
 
   @PostMapping
@@ -36,6 +39,11 @@ public class IngredientController {
   @GetMapping
   public List<IngredientDto> listIngredients() {
     return ingredientService.listIngredients();
+  }
+
+  @GetMapping("/missing")
+  public List<IngredientDto> listMissingIngredients() {
+    return ingredientService.getMissingIngredients(dishService.listDishesInMenu());
   }
 
   @DeleteMapping("/{id}")

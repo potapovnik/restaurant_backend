@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import ru.relex.restaurant.service.DTO.UserDto;
+import ru.relex.restaurant.service.IUserService;
 import ru.relex.restaurant.service.impl.UserService;
 
 import java.util.List;
@@ -17,9 +18,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/users")
 public class UsersController {
-  private final UserService userService;
+  private final IUserService userService;
 
-  public UsersController(UserService userService) {
+  public UsersController(IUserService userService) {
     this.userService = userService;
   }
 
@@ -60,8 +61,9 @@ public class UsersController {
     }
     return userDtosList;
   }
+
   @GetMapping("/getAllCook")
-  public List<UserDto> getAllCook(){
+  public List<UserDto> getAllCook() {
     return userService.getAllCook();
   }
 

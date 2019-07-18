@@ -26,7 +26,7 @@ public class DishService implements IDishService {
 
   @Override
   public List<DishDto> listDishesInMenu() {
-    return null;
+    return mapper.toDto(dishRepository.findAllDishesInMenu());
   }
 
   @Override
