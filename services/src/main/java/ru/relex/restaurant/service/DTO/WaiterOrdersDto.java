@@ -1,7 +1,5 @@
 package ru.relex.restaurant.service.DTO;
 
-import ru.relex.restaurant.db.entity.Orders;
-
 import java.util.Date;
 
 public class WaiterOrdersDto {
@@ -9,15 +7,17 @@ public class WaiterOrdersDto {
   private Date timeOfTake;
   private Date timeOfGiven;
   private boolean isReady;
+  private boolean isTake;
 
   public WaiterOrdersDto() {
   }
 
-  public WaiterOrdersDto(int id, Date timeOfTake, Date timeOfGiven, boolean isReady) {
+  public WaiterOrdersDto(int id, Date timeOfTake, Date timeOfGiven, boolean isReady, boolean isTake) {
     this.id = id;
     this.timeOfTake = timeOfTake;
     this.timeOfGiven = timeOfGiven;
     this.isReady = isReady;
+    this.isTake = isTake;
   }
 
   public int getId() {
@@ -53,4 +53,11 @@ public class WaiterOrdersDto {
   }
 
 
+  public boolean isTake() {
+    return isTake;
+  }
+
+  public void setTake(boolean take) {
+    isTake = take;
+  }
 }

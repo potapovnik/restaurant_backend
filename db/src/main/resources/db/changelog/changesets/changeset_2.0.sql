@@ -33,7 +33,6 @@ create unique index users_login_uindex
 ;
 
 
-
 create table waiter_orders
 (
 	id serial not null
@@ -42,6 +41,7 @@ create table waiter_orders
 	time_of_take timestamp not null,
 	time_of_given timestamp,
 	isready boolean,
+	istake boolean,
 	"user" integer
 		constraint waiter_orders_users_id_fk
 			references users
@@ -51,6 +51,8 @@ create table waiter_orders
 alter table waiter_orders owner to postgres
 ;
 
+
+
 create table cook_orders
 (
 	id serial not null
@@ -59,6 +61,7 @@ create table cook_orders
 	time_of_take timestamp not null,
 	time_of_given timestamp,
 	isready boolean,
+	istake boolean,
 	"user" integer
 		constraint cook_orders_users_id_fk
 			references users

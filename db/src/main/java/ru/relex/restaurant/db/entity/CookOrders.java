@@ -14,17 +14,19 @@ public class CookOrders {
   private Date timeOfTake;
   private Date timeOfGiven;
   private boolean isReady;
+  private boolean isTake;
   @OneToOne(fetch = FetchType.LAZY)
   private Orders order;
 
   public CookOrders() {
   }
 
-  public CookOrders(int id, Date timeOfTake, Date timeOfGiven, boolean isReady) {
+  public CookOrders(int id, Date timeOfTake, Date timeOfGiven, boolean isReady, boolean isTake) {
     this.id = id;
     this.timeOfTake = timeOfTake;
     this.timeOfGiven = timeOfGiven;
     this.isReady = isReady;
+    this.isTake = isTake;
   }
 
   public int getId() {
@@ -82,5 +84,13 @@ public class CookOrders {
   @Override
   public int hashCode() {
     return Objects.hash(id, timeOfTake, timeOfGiven, isReady, order);
+  }
+
+  public boolean isTake() {
+    return isTake;
+  }
+
+  public void setTake(boolean take) {
+    isTake = take;
   }
 }
