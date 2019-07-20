@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.DishIngredientDto;
+import ru.relex.restaurant.service.DishIngredientIdService;
 import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
 
@@ -48,10 +49,22 @@ public class DishController {
     return dishService.listDishesInMenu();
   }
 
-  @GetMapping("/d")
+  @PostMapping("/consist")
+  @ResponseStatus(HttpStatus.CREATED)
+  public void createDishIngredient(@RequestBody DishIngredientDto dishIngDto) {
+    dishIngredientService.createDishIngredient(dishIngDto);
+  }
+
+  @GetMapping("/consist")
   public List<DishIngredientDto> listDishIngr() {
     return dishIngredientService.listDishIngredients();
   }
 
-
+  @DeleteMapping("/consist/{dishId}/{ingId}")
+  public void deleteDishIngredient(@PathVariable("dishId") int dishId, @PathVariable("ingId") int ingId) {
+    DishIngredientIdService tempId = new DishIngredientIdService();
+    tempId.setDishId(dishId);
+    tempId.setIngredientId(ingId);
+    dishIngredientService.deleteDishIngredient(tempId);
+  }
 }

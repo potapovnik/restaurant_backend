@@ -7,6 +7,7 @@ import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.mapper.IDishMapper;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -42,5 +43,11 @@ public class DishService implements IDishService {
   @Override
   public void deleteDish(int id) {
 
+  }
+
+  @Override
+  public List<DishDto> soldDishes(Date begin, Date end) {
+    //dishRepository.f
+    return null;
   }
 }

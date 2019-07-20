@@ -14,12 +14,12 @@ public class Dish {
 
   private String name;
 
-  @Column(updatable = false)
+  //@Column(updatable = false)
   private Double cost;
   private String type;
   private Boolean ismenu;
 
-  @OneToMany(mappedBy = "dish")
+  @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<DishIngredient> consist;
 
   public List<DishIngredient> getConsist() {

@@ -8,4 +8,6 @@ public interface IDishIngredientService {
   void createDishIngredient(DishIngredientDto dto);
 
   List<DishIngredientDto> listDishIngredients();
+
+  void deleteDishIngredient(DishIngredientIdService id);
 }
