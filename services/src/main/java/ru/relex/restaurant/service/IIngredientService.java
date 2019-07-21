@@ -4,6 +4,7 @@ package ru.relex.restaurant.service;
 import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 import ru.relex.restaurant.service.DTO.IngredientsWithTotalCount;
+import ru.relex.restaurant.service.DTO.MissingIngredientDto;
 
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface IIngredientService {
 
   void deleteIngredient(Integer id);
 
-  List<IngredientDto> getMissingIngredients(List<DishDto> dishesInMenu);
+  List<MissingIngredientDto> getMissingIngredients(List<DishDto> dishesInMenu);
 
   Double summaryAmountOfIngredient(Integer ingrId);
 

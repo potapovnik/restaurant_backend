@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.restaurant.service.DTO.IngredientsWithTotalCount;
+import ru.relex.restaurant.service.DTO.MissingIngredientDto;
 import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.IIngredientService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
@@ -40,7 +41,7 @@ public class IngredientController {
   }
 
   @GetMapping("/missing")
-  public List<IngredientDto> listMissingIngredients() {
+  public List<MissingIngredientDto> listMissingIngredients() {
     return ingredientService.getMissingIngredients(dishService.listDishesInMenu());
   }
 
