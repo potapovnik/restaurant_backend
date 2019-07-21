@@ -3,6 +3,7 @@ package ru.relex.restaurant.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.WaiterOrdersRepository;
+import ru.relex.restaurant.db.entity.OrderDish;
 import ru.relex.restaurant.db.entity.WaiterOrders;
 import ru.relex.restaurant.service.DTO.WaiterOrdersDto;
 import ru.relex.restaurant.service.IWaiterOrdersService;
@@ -54,5 +55,11 @@ public class WaiterOrdersService implements IWaiterOrdersService {
       return null;
     }
     return waiterOrdersMapper.toDto(updatedWaiterOrders.get());
+  }
+
+  @Override
+  public List<WaiterOrdersDto> getAllById(int id) {
+    List<WaiterOrders> orderDishList = waiterOrdersRepository.findAllById(id);
+    return waiterOrdersMapper.toDto(orderDishList);
   }
 }

@@ -4,6 +4,7 @@ package ru.relex.restaurant.web.api;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.restaurant.service.DTO.CookOrdersDto;
+import ru.relex.restaurant.service.DTO.WaiterOrdersDto;
 import ru.relex.restaurant.service.impl.CookOrdersService;
 
 import java.util.List;
@@ -38,8 +39,18 @@ public class CookOrdersController {
 
   }
 
+  @GetMapping("getAllById/{id}")
+  public List<CookOrdersDto> getAllById(@PathVariable("id") int id) {
+    return cookOrdersService.getAllById(id);
+  }
+
+  @GetMapping("getAllByIdUser/{id}")
+  public List<CookOrdersDto> getAllByIdUser(@PathVariable("id") int id) {
+    return cookOrdersService.getAllByIdUser(id);
+  }
+
   @PutMapping
-  public CookOrdersDto update(@PathVariable CookOrdersDto cookOrdersDto) {
+  public CookOrdersDto update(@RequestBody CookOrdersDto cookOrdersDto) {
     CookOrdersDto updatedOrders = cookOrdersService.update(cookOrdersDto);
     if (updatedOrders == null) {
       return null;

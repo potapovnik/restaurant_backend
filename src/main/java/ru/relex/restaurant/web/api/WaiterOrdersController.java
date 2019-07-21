@@ -31,6 +31,12 @@ public class WaiterOrdersController {
     return waiterOrdersService.getAll();
   }
 
+  @GetMapping("getAllById/{id}")
+  public List<WaiterOrdersDto> getAllById(@PathVariable("id") int id) {
+    return waiterOrdersService.getAllById(id);
+  }
+
+
   @PostMapping
   public boolean insert(@RequestBody WaiterOrdersDto waiterOrdersDto) {
     boolean isDone = waiterOrdersService.insert(waiterOrdersDto);
@@ -39,7 +45,7 @@ public class WaiterOrdersController {
   }
 
   @PutMapping
-  public WaiterOrdersDto update(@PathVariable WaiterOrdersDto waiterOrdersDto) {
+  public WaiterOrdersDto update(@RequestBody WaiterOrdersDto waiterOrdersDto) {
     WaiterOrdersDto updatedOrders = waiterOrdersService.update(waiterOrdersDto);
     if (updatedOrders == null) {
       return null;

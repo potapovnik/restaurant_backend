@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "waiter_orders")
+@Table(name = "cook_orders")
 public class CookOrders {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cook_seq")
@@ -13,20 +13,23 @@ public class CookOrders {
   private int id;
   private Date timeOfTake;
   private Date timeOfGiven;
-  private boolean isReady;
-  private boolean isTake;
-  @OneToOne(fetch = FetchType.LAZY)
-  private Orders order;
+  @Column(name = "ready")
+  private Boolean ready;
+  @Column(name = "take")
+  private Boolean take;
+  @Column(name = "cook")
+  private int cook;
 
   public CookOrders() {
   }
 
-  public CookOrders(int id, Date timeOfTake, Date timeOfGiven, boolean isReady, boolean isTake) {
+  public CookOrders(int id, Date timeOfTake, Date timeOfGiven, Boolean ready, Boolean take, int cook) {
     this.id = id;
     this.timeOfTake = timeOfTake;
     this.timeOfGiven = timeOfGiven;
-    this.isReady = isReady;
-    this.isTake = isTake;
+    this.ready = ready;
+    this.take = take;
+    this.cook = cook;
   }
 
   public int getId() {
@@ -53,22 +56,31 @@ public class CookOrders {
     this.timeOfGiven = timeOfGiven;
   }
 
-  public boolean isReady() {
-    return isReady;
+
+  public int getCook() {
+    return cook;
   }
 
-  public void setReady(boolean ready) {
-    isReady = ready;
+  public void setCook(int cook) {
+    this.cook = cook;
   }
 
-
-  public Orders getOrder() {
-    return order;
+  public Boolean getTake() {
+    return take;
   }
 
-  public void setOrder(Orders order) {
-    this.order = order;
+  public void setTake(Boolean take) {
+    this.take = take;
   }
+
+  public Boolean getReady() {
+    return ready;
+  }
+
+  public void setReady(Boolean ready) {
+    this.ready = ready;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -78,19 +90,12 @@ public class CookOrders {
     return id == cook.id &&
         timeOfGiven == cook.timeOfGiven &&
         timeOfTake == cook.timeOfTake &&
-        isReady == cook.isReady;
+        ready == cook.ready;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, timeOfTake, timeOfGiven, isReady, order);
+    return Objects.hash(id, timeOfTake, timeOfGiven, ready);
   }
 
-  public boolean isTake() {
-    return isTake;
-  }
-
-  public void setTake(boolean take) {
-    isTake = take;
-  }
 }

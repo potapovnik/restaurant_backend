@@ -38,7 +38,7 @@ create table waiter_orders
 	id serial not null
 		constraint waiter_orders_pkey
 			primary key,
-	time_of_take timestamp not null,
+	time_of_take timestamp,
 	time_of_given timestamp,
 	isready boolean,
 	istake boolean,
@@ -58,7 +58,7 @@ create table cook_orders
 	id serial not null
 		constraint cook_orders_pkey
 			primary key,
-	time_of_take timestamp not null,
+	time_of_take timestamp,
 	time_of_given timestamp,
 	isready boolean,
 	istake boolean,

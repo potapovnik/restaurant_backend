@@ -1,25 +1,23 @@
 package ru.relex.restaurant.service.DTO;
 
-import ru.relex.restaurant.db.entity.Roles;
-
 public class UserDto {
   private int id;
   private String login;
   private String password;
   private String name;
   private String surname;
-  private int role_id;
+  private int roleId;
 
   public UserDto() {
   }
 
-  public UserDto(int id, String login, String password, String name, String surname, int role_id) {
+  public UserDto(int id, String login, String password, String name, String surname, int roleId) {
     this.id = id;
     this.login = login;
     this.password = password;
     this.name = name;
     this.surname = surname;
-    this.role_id = role_id;
+    this.roleId = roleId;
   }
 
   public int getId() {
@@ -63,11 +61,11 @@ public class UserDto {
   }
 
 
-  public int getRole_id() {
-    return role_id;
+  public int getRoleId() {
+    return roleId;
   }
 
-  public void setRole_id(int role_id) {
-    this.role_id = role_id;
+  public void setRoleId(int roleId) {
+    this.roleId = roleId;
   }
 }

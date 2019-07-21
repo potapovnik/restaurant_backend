@@ -6,18 +6,20 @@ public class CookOrdersDto {
   private int id;
   private Date timeOfTake;
   private Date timeOfGiven;
-  private boolean isReady;
-  private boolean isTake;
+  private Boolean ready;
+  private Boolean take;
+  private int cook;
 
   public CookOrdersDto() {
   }
 
-  public CookOrdersDto(int id, Date timeOfTake, Date timeOfGiven, boolean isReady, boolean isTake) {
+  public CookOrdersDto(int id, Date timeOfTake, Date timeOfGiven,  Boolean ready, Boolean take, int cook) {
     this.id = id;
     this.timeOfTake = timeOfTake;
     this.timeOfGiven = timeOfGiven;
-    this.isReady = isReady;
-    this.isTake = isTake;
+    this.ready = ready;
+    this.take = take;
+    this.cook = cook;
   }
 
   public int getId() {
@@ -44,20 +46,29 @@ public class CookOrdersDto {
     this.timeOfGiven = timeOfGiven;
   }
 
-  public boolean isReady() {
-    return isReady;
+
+
+  public int getCook() {
+    return cook;
   }
 
-  public void setReady(boolean ready) {
-    isReady = ready;
+  public void setCook(int cook) {
+    this.cook = cook;
   }
 
-
-  public boolean isTake() {
-    return isTake;
+  public Boolean getTake() {
+    return take;
   }
 
-  public void setTake(boolean take) {
-    isTake = take;
+  public void setTake(Boolean take) {
+    this.take = take;
+  }
+
+  public Boolean getReady() {
+    return ready;
+  }
+
+  public void setReady(Boolean ready) {
+    this.ready = ready;
   }
 }

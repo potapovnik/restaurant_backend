@@ -13,20 +13,23 @@ public class WaiterOrders {
   private int id;
   private Date timeOfTake;
   private Date timeOfGiven;
-  private boolean isReady;
-  private boolean isTake;
-  @OneToOne(fetch = FetchType.LAZY)
-  private Orders order;
+  @Column(name = "ready")
+  private Boolean ready;
+  @Column(name = "take")
+  private Boolean take;
+  @Column(name = "waiter")
+  private int waiter;
 
   public WaiterOrders() {
   }
 
-  public WaiterOrders(int id, Date timeOfTake, Date timeOfGiven, boolean isReady, boolean isTake) {
+  public WaiterOrders(int id, Date timeOfTake, Date timeOfGiven, Boolean ready, Boolean take, int waiter) {
     this.id = id;
     this.timeOfTake = timeOfTake;
     this.timeOfGiven = timeOfGiven;
-    this.isReady = isReady;
-    this.isTake = isTake;
+    this.ready = ready;
+    this.take = take;
+    this.waiter = waiter;
   }
 
   public int getId() {
@@ -53,20 +56,28 @@ public class WaiterOrders {
     this.timeOfGiven = timeOfGiven;
   }
 
-  public boolean isReady() {
-    return isReady;
+  public int getWaiter() {
+    return waiter;
   }
 
-  public void setReady(boolean ready) {
-    isReady = ready;
+  public void setWaiter(int waiter) {
+    this.waiter = waiter;
   }
 
-  public Orders getOrder() {
-    return order;
+  public Boolean getTake() {
+    return take;
   }
 
-  public void setOrder(Orders order) {
-    this.order = order;
+  public void setTake(Boolean take) {
+    this.take = take;
+  }
+
+  public Boolean getReady() {
+    return ready;
+  }
+
+  public void setReady(Boolean ready) {
+    this.ready = ready;
   }
 
   @Override
@@ -77,19 +88,12 @@ public class WaiterOrders {
     return id == waiter.id &&
         timeOfGiven == waiter.timeOfGiven &&
         timeOfTake == waiter.timeOfTake &&
-        isReady == waiter.isReady;
+        ready == waiter.ready;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, timeOfTake, timeOfGiven, isReady, order);
+    return Objects.hash(id, timeOfTake, timeOfGiven, ready);
   }
 
-  public boolean isTake() {
-    return isTake;
-  }
-
-  public void setTake(boolean take) {
-    isTake = take;
-  }
 }
