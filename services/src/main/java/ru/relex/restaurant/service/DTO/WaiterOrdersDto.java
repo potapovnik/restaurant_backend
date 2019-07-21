@@ -6,18 +6,20 @@ public class WaiterOrdersDto {
   private int id;
   private Date timeOfTake;
   private Date timeOfGiven;
-  private boolean isReady;
-  private boolean isTake;
+  private Boolean ready;
+  private Boolean take;
+  private int waiter;
 
   public WaiterOrdersDto() {
   }
 
-  public WaiterOrdersDto(int id, Date timeOfTake, Date timeOfGiven, boolean isReady, boolean isTake) {
+  public WaiterOrdersDto(int id, Date timeOfTake, Date timeOfGiven, Boolean ready, Boolean take, int waiter) {
     this.id = id;
     this.timeOfTake = timeOfTake;
     this.timeOfGiven = timeOfGiven;
-    this.isReady = isReady;
-    this.isTake = isTake;
+    this.ready = ready;
+    this.take = take;
+    this.waiter = waiter;
   }
 
   public int getId() {
@@ -44,20 +46,29 @@ public class WaiterOrdersDto {
     this.timeOfGiven = timeOfGiven;
   }
 
-  public boolean isReady() {
-    return isReady;
+
+
+  public int getWaiter() {
+    return waiter;
   }
 
-  public void setReady(boolean ready) {
-    isReady = ready;
+  public void setWaiter(int waiter) {
+    this.waiter = waiter;
   }
 
-
-  public boolean isTake() {
-    return isTake;
+  public Boolean getReady() {
+    return ready;
   }
 
-  public void setTake(boolean take) {
-    isTake = take;
+  public void setReady(Boolean ready) {
+    this.ready = ready;
+  }
+
+  public Boolean getTake() {
+    return take;
+  }
+
+  public void setTake(Boolean take) {
+    this.take = take;
   }
 }

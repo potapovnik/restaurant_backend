@@ -13,4 +13,6 @@ public interface IWaiterOrdersService {
   public boolean insert(WaiterOrdersDto waiterOrders);
 
   public WaiterOrdersDto update(WaiterOrdersDto waiterOrders);
+
+  public List<WaiterOrdersDto> getAllById(int id);
 }

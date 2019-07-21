@@ -47,12 +47,12 @@ public class OrdersService implements IOrdersService {
   }
 
   @Override
-  public boolean insert(OrdersDto ordersDto) {
+  public OrdersDto insert(OrdersDto ordersDto) {
     Orders orders = ordersMapper.fromDto(ordersDto);
     if (orders == null) {
-      return false;
+      return null;
     }
-    ordersRepository.save(orders);
-    return true;
+    Orders createdOrder = ordersRepository.save(orders);
+    return ordersMapper.toDto(createdOrder);
   }
 }

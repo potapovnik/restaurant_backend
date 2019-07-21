@@ -59,4 +59,16 @@ public class CookOrdersService implements ICookOrdersService {
     return true;
 
   }
+
+  @Override
+  public List<CookOrdersDto> getAllById(int id) {
+    List<CookOrders> cookOrdersList = cookOrdersRepository.findAllById(id);
+    return cookOrdersMapper.toDto(cookOrdersList);
+  }
+
+  @Override
+  public List<CookOrdersDto> getAllByIdUser(int id) {
+    List<CookOrders> cookOrdersList = cookOrdersRepository.findAllByCook(id);
+    return cookOrdersMapper.toDto(cookOrdersList);
+  }
 }

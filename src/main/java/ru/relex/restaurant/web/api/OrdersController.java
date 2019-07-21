@@ -33,14 +33,17 @@ public class OrdersController {
   }
 
   @PostMapping
-  public boolean insert(@RequestBody OrdersDto ordersDto) {
-    boolean isDone = ordersService.insert(ordersDto);
-    return isDone;
+  public OrdersDto insert(@RequestBody OrdersDto ordersDto) {
+    OrdersDto createdOrder = ordersService.insert(ordersDto);
+    if (createdOrder == null) {
+      return null;
+    }
+    return createdOrder;
 
   }
 
   @PutMapping
-  public OrdersDto update(@PathVariable OrdersDto ordersDto) {
+  public OrdersDto update(@RequestBody OrdersDto ordersDto) {
     OrdersDto updatedOrders = ordersService.update(ordersDto);
     if (updatedOrders == null) {
       return null;

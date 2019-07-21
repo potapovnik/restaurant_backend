@@ -13,4 +13,8 @@ public interface ICookOrdersService {
 
   public boolean insert(CookOrdersDto cookOrdersDto);
 
+  public List<CookOrdersDto> getAllById(int id);
+
+  public List<CookOrdersDto> getAllByIdUser(int id);
+
 }
