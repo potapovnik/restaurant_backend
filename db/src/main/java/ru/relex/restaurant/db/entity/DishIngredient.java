@@ -19,12 +19,12 @@ public class DishIngredient implements Serializable {
 
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "dish_id", insertable = false, updatable = false)
+  @JoinColumn(name = "dish_id", insertable = false, updatable = false) //
   private Dish dish;
 
 
   @ManyToOne
-  @JoinColumn(name = "ingredient_id", insertable = false, updatable = false)
+  @JoinColumn(name = "ingredient_id", insertable = false, updatable = false) // , insertable = false, updatable = false
   private Ingredient ingredient;
 
   public DishIngredient() {
@@ -55,13 +55,13 @@ public class DishIngredient implements Serializable {
 //    this.dish = dish;
 //  }
 //
-//  public Ingredient getIngredient() {
-//    return ingredient;
-//  }
-//
-//  public void setIngredient(Ingredient ingredient) {
-//    this.ingredient = ingredient;
-//  }
+public Ingredient getIngredient() {
+  return ingredient;
+}
+
+  public void setIngredient(Ingredient ingredient) {
+    this.ingredient = ingredient;
+  }
 
 
   @Override

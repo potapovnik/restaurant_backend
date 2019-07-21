@@ -2,8 +2,11 @@ package ru.relex.restaurant.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.DishIngredientRepository;
+import ru.relex.restaurant.db.entity.DishIngredientId;
 import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.DishIngredientDto;
+import ru.relex.restaurant.service.DishIngredientIdService;
+import ru.relex.restaurant.service.DishIngredientIdService;
 import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.mapper.IDishIngredientMapper;
@@ -28,5 +31,13 @@ public class DishIngredientService implements IDishIngredientService {
   @Override
   public List<DishIngredientDto> listDishIngredients() {
     return mapper.toDto(repository.findAll());//mapper.toDto(repository.findAll());
+  }
+
+  @Override
+  public void deleteDishIngredient(DishIngredientIdService id) {
+    DishIngredientId dbId = new DishIngredientId();
+    dbId.setDishId(id.getDishId());
+    dbId.setIngredientId(id.getIngredientId());
+    repository.deleteById(dbId);
   }
 }

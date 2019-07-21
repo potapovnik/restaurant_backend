@@ -6,7 +6,7 @@ public class DishIngredientDto {
 
   private DishIngredientId id;
   private Double value;
-  // private IngredientForDishDto ingredient;
+  private IngredientForDishDto ingredient;
 
 
   public DishIngredientDto() {
@@ -28,11 +28,11 @@ public class DishIngredientDto {
     this.value = value;
   }
 
-//  public IngredientForDishDto getIngredient() {
-//    return ingredient;
-//  }
-//
-//  public void setIngredient(IngredientForDishDto ingredient) {
-//    this.ingredient = ingredient;
-//  }
+  public IngredientForDishDto getIngredient() {
+    return ingredient;
+  }
+
+  public void setIngredient(IngredientForDishDto ingredient) {
+    this.ingredient = ingredient;
+  }
 }

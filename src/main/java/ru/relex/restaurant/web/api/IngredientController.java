@@ -2,14 +2,8 @@ package ru.relex.restaurant.web.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import ru.relex.restaurant.service.DTO.IngredientsWithTotalCount;
 import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.IIngredientService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
@@ -37,8 +31,12 @@ public class IngredientController {
   }
 
   @GetMapping
-  public List<IngredientDto> listIngredients() {
-    return ingredientService.listIngredients();
+  public IngredientsWithTotalCount listIngredients(
+      @RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
+      @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
+      @RequestParam(name = "sortedBy", required = false, defaultValue = "id") String sortedBy,
+      @RequestParam(name = "sortDir", required = false, defaultValue = "asc") String sortDir) {
+    return ingredientService.listIngredients(pageIndex, pageSize, sortDir, sortedBy);
   }
 
   @GetMapping("/missing")
@@ -46,8 +44,20 @@ public class IngredientController {
     return ingredientService.getMissingIngredients(dishService.listDishesInMenu());
   }
 
+  @PutMapping("/reduce/{id}/{delta}")
+  public boolean reduceIngredientAmount(@PathVariable("id") int id, @PathVariable("delta") double delta) {
+    return ingredientService.reduceAmountOfIngredient(id, delta);
+  }
+
+  @GetMapping("/summary/{id}")
+  public Double summaryAmountOfIngredient(@PathVariable("id") int id) {
+    return ingredientService.summaryAmountOfIngredient(id);
+  }
+
   @DeleteMapping("/{id}")
   public void removeIngredient(@PathVariable("id") int id) {
     ingredientService.deleteIngredient(id);
   }
+
+
 }
