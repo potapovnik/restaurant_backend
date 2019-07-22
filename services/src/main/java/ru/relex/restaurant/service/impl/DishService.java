@@ -1,9 +1,13 @@
 package ru.relex.restaurant.service.impl;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.DishRepository;
 
 import ru.relex.restaurant.service.DTO.DishDto;
+import ru.relex.restaurant.service.DTO.DishesWithTotalCount;
 import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.mapper.IDishMapper;
 
@@ -31,8 +35,14 @@ public class DishService implements IDishService {
   }
 
   @Override
-  public List<DishDto> listDishesAllTime() {
-    return mapper.toDto(dishRepository.findAll());
+  public DishesWithTotalCount listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy) {
+    DishesWithTotalCount result = new DishesWithTotalCount();
+
+    Pageable sortAndPaginator = PageRequest.of(pageIndex, pageSize, Sort.Direction.fromString(sortDirection), sortedBy);
+
+    result.setItems(mapper.toDto(dishRepository.findAll(sortAndPaginator).getContent()));
+    result.setTotalCount(dishRepository.count());
+    return result;
   }
 
   @Override

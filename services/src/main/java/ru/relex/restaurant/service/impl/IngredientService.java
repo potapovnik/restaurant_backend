@@ -43,9 +43,12 @@ public class IngredientService implements IIngredientService {
   @Override
   public IngredientsWithTotalCount listIngredients(int pageIndex, int pageSize, String sortDirection, String sortedBy) {
     IngredientsWithTotalCount result = new IngredientsWithTotalCount();
+
     Pageable sortAndPaginator = PageRequest.of(pageIndex, pageSize, Sort.Direction.fromString(sortDirection), sortedBy);
+
     result.setItems(mapper.toDto(repository.findAll(sortAndPaginator).getContent()));
     result.setTotalCount(repository.count());
+
     return result;
   }
 
