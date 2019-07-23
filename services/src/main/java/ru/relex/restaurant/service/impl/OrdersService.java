@@ -2,11 +2,13 @@ package ru.relex.restaurant.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.OrdersRepository;
+import ru.relex.restaurant.db.entity.History;
 import ru.relex.restaurant.db.entity.Orders;
 import ru.relex.restaurant.service.DTO.OrdersDto;
 import ru.relex.restaurant.service.IOrdersService;
 import ru.relex.restaurant.service.mapper.IOrdersMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,4 +57,20 @@ public class OrdersService implements IOrdersService {
     Orders createdOrder = ordersRepository.save(orders);
     return ordersMapper.toDto(createdOrder);
   }
+
+  @Override
+  public List<OrdersDto> getAllById(int id) {
+    List<Orders> ordersList = ordersRepository.findAll();
+    List<Orders> ordersOfUser = new ArrayList<>();
+    for (Orders curOrd : ordersList) {
+      for (History curHis : curOrd.getHistoryList()) {
+        if (curHis.getUser_id() == id){
+          ordersOfUser.add(curOrd);
+          break;
+        }
+      }
+    }
+    return ordersMapper.toDto(ordersOfUser);
+  }
+
 }

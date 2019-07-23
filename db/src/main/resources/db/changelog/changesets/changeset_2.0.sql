@@ -32,62 +32,19 @@ create unique index users_login_uindex
 	on users (login)
 ;
 
-
-create table waiter_orders
-(
-	id serial not null
-		constraint waiter_orders_pkey
-			primary key,
-	time_of_take timestamp,
-	time_of_given timestamp,
-	isready boolean,
-	istake boolean,
-	"user" integer
-		constraint waiter_orders_users_id_fk
-			references users
-)
-;
-
-alter table waiter_orders owner to postgres
-;
-
-
-
-create table cook_orders
-(
-	id serial not null
-		constraint cook_orders_pkey
-			primary key,
-	time_of_take timestamp,
-	time_of_given timestamp,
-	isready boolean,
-	istake boolean,
-	"user" integer
-		constraint cook_orders_users_id_fk
-			references users
-)
-;
-
-alter table cook_orders owner to postgres
-;
-
 create table orders
 (
 	id serial not null
-		constraint orders_pkey
+		constraint orders_pk
 			primary key,
-	cook_id integer
-		constraint orders_cook_orders_id_fk
-			references cook_orders,
-	waiter_id integer
-		constraint orders_waiter_orders_id_fk
-			references waiter_orders,
 	comments varchar(200)
 )
 ;
 
 alter table orders owner to postgres
 ;
+
+
 
 create table order_dish
 (
@@ -105,5 +62,40 @@ create table order_dish
 ;
 
 alter table order_dish owner to postgres
+;
+
+create table status
+(
+	id serial not null
+		constraint status_pkey
+			primary key,
+	name varchar(100)
+)
+;
+
+alter table status owner to postgres
+;
+
+
+
+create table history
+(
+	id serial not null
+		constraint history_pkey
+			primary key,
+	status_id integer
+		constraint history_status_id_fk
+			references status,
+	time timestamp,
+	order_id integer
+		constraint history_orders_id_fk
+			references orders,
+	user_id integer
+		constraint history_users_id_fk
+			references users
+)
+;
+
+alter table history owner to postgres
 ;
 

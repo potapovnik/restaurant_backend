@@ -1,7 +1,7 @@
 package ru.relex.restaurant.db.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -11,27 +11,15 @@ public class Orders {
   @SequenceGenerator(name = "orders_seq", sequenceName = "orders_id_seq", allocationSize = 1)
   private int id;
   private String comments;
-  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinColumn(name = "waiter_id", referencedColumnName = "id")
-  private WaiterOrders waiterOrders;
-  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinColumn(name = "cook_id", referencedColumnName = "id")
-  private CookOrders cookOrders;
-
-  public Orders() {
+  @OneToMany(fetch = FetchType.LAZY)
+  @JoinColumn(name = "order_id")
+  private List<History> historyList;
+  public Orders(){
   }
-
-  public Orders(int id, String comments, WaiterOrders waiterOrders, CookOrders cookOrders) {
+  public Orders(int id, String comments, List<History> historyList) {
     this.id = id;
     this.comments = comments;
-    this.waiterOrders = waiterOrders;
-    this.cookOrders = cookOrders;
-
-  }
-  public Orders(int id, String comments) {
-    this.id = id;
-    this.comments = comments;
-
+    this.historyList = historyList;
   }
 
   public int getId() {
@@ -46,37 +34,15 @@ public class Orders {
     return comments;
   }
 
-  public void setComments(String comment) {
-    this.comments = comment;
+  public void setComments(String comments) {
+    this.comments = comments;
   }
 
-  public CookOrders getCookOrders() {
-    return cookOrders;
+  public List<History> getHistoryList() {
+    return historyList;
   }
 
-  public WaiterOrders getWaiterOrders() {
-    return waiterOrders;
-  }
-
-  public void setCookOrders(CookOrders cookOrders) {
-    this.cookOrders = cookOrders;
-  }
-
-  public void setWaiterOrders(WaiterOrders waiterOrders) {
-    this.waiterOrders = waiterOrders;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || !(o instanceof Roles)) return false;
-    Orders orders = (Orders) o;
-    return id == orders.id &&
-        comments.equals(orders.comments);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, comments, waiterOrders, cookOrders);
+  public void setHistoryList(List<History> historyList) {
+    this.historyList = historyList;
   }
 }

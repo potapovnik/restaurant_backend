@@ -8,7 +8,9 @@ import ru.relex.restaurant.service.impl.RoleService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/roles")
+@RequestMapping(value = "/roles",
+    consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+    produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class RoleController {
   private final RoleService roleService;
 

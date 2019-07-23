@@ -9,8 +9,9 @@ import ru.relex.restaurant.service.impl.OrdersService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value =
-    "/orders")
+@RequestMapping(value = "/orders",
+    consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+    produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class OrdersController {
   private final OrdersService ordersService;
 
@@ -30,6 +31,11 @@ public class OrdersController {
   @GetMapping("/getAll")
   public List<OrdersDto> getAll() {
     return ordersService.getAll();
+  }
+
+  @GetMapping("/allOrdersById/{id}")
+  public List<OrdersDto> getAllById(@PathVariable("id") int id) {
+    return ordersService.getAllById(id);
   }
 
   @PostMapping

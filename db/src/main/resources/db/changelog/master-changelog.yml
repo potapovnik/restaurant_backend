@@ -38,8 +38,9 @@ databaseChangeLog:
   - changeSet:
       id: 5
       author: potapov
-      comment: change field "user" in table waiterOrders and cookOrders on "waiter" and "cook" and boolean lost "is"
+      comment: insert data for status
       changes:
         - sqlFile:
             path: changesets/changeset_4.1.sql
             relativeToChangelogFile: true
+

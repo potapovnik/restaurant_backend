@@ -1,23 +1,22 @@
 package ru.relex.restaurant.service.DTO;
 
 
-import ru.relex.restaurant.db.entity.CookOrders;
-import ru.relex.restaurant.db.entity.WaiterOrders;
+import ru.relex.restaurant.db.entity.History;
+
+import java.util.List;
 
 public class OrdersDto {
   private int id;
   private String comments;
-  private WaiterOrders waiterOrders;
-  private CookOrders cookOrders;
+  private List<History> historyList;
 
   public OrdersDto() {
   }
 
-  public OrdersDto(int id, String comments, WaiterOrders waiterOrders, CookOrders cookOrders) {
+  public OrdersDto(int id, String comments, List<History> historyList) {
     this.id = id;
     this.comments = comments;
-    this.waiterOrders = waiterOrders;
-    this.cookOrders = cookOrders;
+    this.historyList = historyList;
   }
 
   public int getId() {
@@ -36,19 +35,11 @@ public class OrdersDto {
     this.comments = comments;
   }
 
-  public WaiterOrders getWaiterOrders() {
-    return waiterOrders;
+  public List<History> getHistoryList() {
+    return historyList;
   }
 
-  public void setWaiterOrders(WaiterOrders waiterOrders) {
-    this.waiterOrders = waiterOrders;
-  }
-
-  public CookOrders getCookOrders() {
-    return cookOrders;
-  }
-
-  public void setCookOrders(CookOrders cookOrders) {
-    this.cookOrders = cookOrders;
+  public void setHistoryList(List<History> historyList) {
+    this.historyList = historyList;
   }
 }
