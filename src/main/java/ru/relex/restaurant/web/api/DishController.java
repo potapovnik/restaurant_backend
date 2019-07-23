@@ -45,9 +45,11 @@ public class DishController {
       @RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
       @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
       @RequestParam(name = "sortedBy", required = false, defaultValue = "id") String sortedBy,
-      @RequestParam(name = "sortDir", required = false, defaultValue = "asc") String sortDir
+      @RequestParam(name = "sortDir", required = false, defaultValue = "asc") String sortDir,
+      @RequestParam(name = "filter", required = false, defaultValue = "") String filter
+
   ) {
-    return dishService.listDishesAllTime(pageIndex, pageSize, sortDir, sortedBy);
+    return dishService.listDishesAllTime(pageIndex, pageSize, sortDir, sortedBy, filter);
   }
 
   @GetMapping("/inmenu")

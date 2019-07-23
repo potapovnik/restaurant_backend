@@ -16,4 +16,9 @@ public interface IIngredientPartService {
   void updateIngredientPart(IngredientPartDto dto);
 
   void deleteIngredientPart(int id);
+
+  public boolean reduceAmountOfIngredient(Integer ingrId, Double delta);
+
+  public Double summaryAmountOfIngredient(Integer ingrId);
+
 }

@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.relex.restaurant.service.DTO.IngredientPartFullDto;
 import ru.relex.restaurant.service.IIngredientPartService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 import ru.relex.restaurant.service.DTO.IngredientPartDto;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -45,8 +47,19 @@ public class IngredientPartController {
     ingredientPartService.createIngredientPart(dto);
   }
 
+  @PutMapping("/reduce")
+  public boolean reduceAmountOfIngredient(@RequestParam(name = "ingredientId", required = true) Integer ingredientId,
+                                          @RequestParam(name = "delta", required = true) Double delta) {
+    return ingredientPartService.reduceAmountOfIngredient(ingredientId, delta);
+  }
+
   @DeleteMapping("/{id}")
   public void deletePart(@PathVariable("id") int id) {
     ingredientPartService.deleteIngredientPart(id);
+  }
+
+  @GetMapping("/summary/{id}")
+  public Double summaryAmountOfIngredient(@PathVariable("id") int id) {
+    return ingredientPartService.summaryAmountOfIngredient(id);
   }
 }

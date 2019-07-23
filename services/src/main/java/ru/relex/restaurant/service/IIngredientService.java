@@ -21,8 +21,4 @@ public interface IIngredientService {
 
   List<MissingIngredientDto> getMissingIngredients(List<DishDto> dishesInMenu);
 
-  Double summaryAmountOfIngredient(Integer ingrId);
-
-  boolean reduceAmountOfIngredient(Integer ingrId, Double delta);
-
 }

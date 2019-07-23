@@ -54,15 +54,7 @@ public class IngredientController {
     return ingredientService.getMissingIngredients(dishService.listDishesInMenu());
   }
 
-  @PutMapping("/reduce/{id}/{delta}")
-  public boolean reduceIngredientAmount(@PathVariable("id") int id, @PathVariable("delta") double delta) {
-    return ingredientService.reduceAmountOfIngredient(id, delta);
-  }
 
-  @GetMapping("/summary/{id}")
-  public Double summaryAmountOfIngredient(@PathVariable("id") int id) {
-    return ingredientService.summaryAmountOfIngredient(id);
-  }
 
   @DeleteMapping("/{id}")
   public void removeIngredient(@PathVariable("id") int id) {

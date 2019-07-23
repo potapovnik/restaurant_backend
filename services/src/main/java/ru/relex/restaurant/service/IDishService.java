@@ -12,7 +12,7 @@ public interface IDishService {
 
   List<DishDto> listDishesInMenu();
 
-  DishesWithTotalCount listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy);
+  DishesWithTotalCount listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy, String filter);
 
   void updateDish(DishDto dish);
 

@@ -14,7 +14,7 @@ public class Dish {
 
   private String name;
 
-  //@Column(updatable = false)
+  @Column(updatable = false)
   private Double cost;
   private String type;
   private Boolean ismenu;
@@ -29,32 +29,6 @@ public class Dish {
   public void setConsist(List<DishIngredient> consist) {
     this.consist = consist;
   }
-//  @ElementCollection
-//  @CollectionTable(name = "dish_ingredient", joinColumns = @JoinColumn(name = "dish_id"))
-//  @Column(name = "value")
-//  private List<Double> value = new ArrayList<>();
-
-//  public List<Double> getValues() {
-//    return value;
-//  }
-//
-//  public void setValues(List<Double> values) {
-//    this.value = values;
-//  }
-
-//  @ManyToMany()
-//  @JoinTable(name = "dish_ingredient",
-//      joinColumns = @JoinColumn(name = "dish_id"),
-//      inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-//  private List<Ingredient> ingredients;
-//
-//  public List<Ingredient> getIngredients() {
-//    return ingredients;
-//  }
-//
-//  public void setIngredients(List<Ingredient> ingredients) {
-//    this.ingredients = ingredients;
-//  }
 
   public Dish() {
   }
