@@ -4,15 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.DishIngredientDto;
+import ru.relex.restaurant.service.DTO.DishesWithTotalCount;
 import ru.relex.restaurant.service.DishIngredientIdService;
 import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
@@ -40,8 +41,13 @@ public class DishController {
   }
 
   @GetMapping
-  public List<DishDto> listDishesAllTime() {
-    return dishService.listDishesAllTime();
+  public DishesWithTotalCount listDishesAllTime(
+      @RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
+      @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
+      @RequestParam(name = "sortedBy", required = false, defaultValue = "id") String sortedBy,
+      @RequestParam(name = "sortDir", required = false, defaultValue = "asc") String sortDir
+  ) {
+    return dishService.listDishesAllTime(pageIndex, pageSize, sortDir, sortedBy);
   }
 
   @GetMapping("/inmenu")

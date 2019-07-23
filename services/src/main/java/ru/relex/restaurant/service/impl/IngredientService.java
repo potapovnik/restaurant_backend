@@ -43,9 +43,12 @@ public class IngredientService implements IIngredientService {
   @Override
   public IngredientsWithTotalCount listIngredients(int pageIndex, int pageSize, String sortDirection, String sortedBy) {
     IngredientsWithTotalCount result = new IngredientsWithTotalCount();
+
     Pageable sortAndPaginator = PageRequest.of(pageIndex, pageSize, Sort.Direction.fromString(sortDirection), sortedBy);
+
     result.setItems(mapper.toDto(repository.findAll(sortAndPaginator).getContent()));
     result.setTotalCount(repository.count());
+
     return result;
   }
 
@@ -60,10 +63,10 @@ public class IngredientService implements IIngredientService {
   }
 
   @Override
-  public List<IngredientDto> getMissingIngredients(List<DishDto> dishesInMenu) {
+  public List<MissingIngredientDto> getMissingIngredients(List<DishDto> dishesInMenu) {
 
     List<IngredientDto> allIngredietns = mapper.toDto(repository.findAll());
-    List<IngredientDto> missingIngredietns = new ArrayList<IngredientDto>();
+    List<MissingIngredientDto> missingIngredietns = new ArrayList<>();
     Double maxCountOfIngredientInDishes = 0.0;
     Calendar calendar = Calendar.getInstance();
     calendar.add(Calendar.DATE, EXPIRATION_DATE);
@@ -97,7 +100,13 @@ public class IngredientService implements IIngredientService {
         }
       }
       if (summaryCountIngredientInAllParties < DISHES_IN_RESERVE * maxCountOfIngredientInDishes) {
-        missingIngredietns.add(allIngredietns.get(i));
+        MissingIngredientDto temp = new MissingIngredientDto();
+        temp.setId(allIngredietns.get(i).getId());
+        temp.setName(allIngredietns.get(i).getName());
+        temp.setMeasure(allIngredietns.get(i).getMeasure());
+        temp.setAmount(summaryCountIngredientInAllParties);
+        temp.setNeedAmount(DISHES_IN_RESERVE * maxCountOfIngredientInDishes);
+        missingIngredietns.add(temp);
       }
     }
     return missingIngredietns;
