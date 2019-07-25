@@ -14,9 +14,4 @@ public interface IDishService {
 
   DishesWithTotalCount listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy, String filter);
 
-  void updateDish(DishDto dish);
-
-  void deleteDish(int id);
-
-  List<DishDto> soldDishes(Date begin, Date end);
 }

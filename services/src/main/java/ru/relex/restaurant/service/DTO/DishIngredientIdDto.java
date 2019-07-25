@@ -1,10 +1,10 @@
-package ru.relex.restaurant.service;
+package ru.relex.restaurant.service.DTO;
 
-public class DishIngredientIdService {
+public class DishIngredientIdDto {
   private Integer dishId;
   private Integer ingredientId;
 
-  public DishIngredientIdService() {
+  public DishIngredientIdDto() {
   }
 
   public Integer getDishId() {

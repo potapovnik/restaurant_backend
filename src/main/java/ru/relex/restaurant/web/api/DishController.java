@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.DishIngredientDto;
+import ru.relex.restaurant.service.DTO.DishIngredientIdDto;
 import ru.relex.restaurant.service.DTO.DishesWithTotalCount;
-import ru.relex.restaurant.service.DishIngredientIdService;
 import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(path = "/dishes",
@@ -63,14 +62,9 @@ public class DishController {
     dishIngredientService.createDishIngredient(dishIngDto);
   }
 
-  @GetMapping("/consist")
-  public List<DishIngredientDto> listDishIngr() {
-    return dishIngredientService.listDishIngredients();
-  }
-
   @DeleteMapping("/consist/{dishId}/{ingId}")
   public void deleteDishIngredient(@PathVariable("dishId") int dishId, @PathVariable("ingId") int ingId) {
-    DishIngredientIdService tempId = new DishIngredientIdService();
+    DishIngredientIdDto tempId = new DishIngredientIdDto();
     tempId.setDishId(dishId);
     tempId.setIngredientId(ingId);
     dishIngredientService.deleteDishIngredient(tempId);

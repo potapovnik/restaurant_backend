@@ -13,5 +13,5 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
   @Query("select o from Dish o where ismenu = true")
   List<Dish> findAllDishesInMenu();
 
-  Page<Dish> findDishesByNameLike(String like, Pageable sort);
+  Page<Dish> findDishesByNameLikeIgnoreCase(String like, Pageable sort);
 }

@@ -11,8 +11,6 @@ public class DishDto {
   private String type;
   private Boolean ismenu;
   private List<DishIngredientDto> consist;
-//  private List<Double> value;
-//  private List<IngredientForDishDto> ingredients;
 
   public DishDto() {
   }
@@ -24,14 +22,6 @@ public class DishDto {
   public void setConsist(List<DishIngredientDto> consist) {
     this.consist = consist;
   }
-
-//  public List<Double> getValue() {
-//    return value;
-//  }
-//
-//  public void setValue(List<Double> values) {
-//    this.value = values;
-//  }
 
   public Integer getId() {
     return id;
@@ -73,11 +63,4 @@ public class DishDto {
     this.ismenu = ismenu;
   }
 
-//  public List<IngredientForDishDto> getIngredients() {
-//    return ingredients;
-//  }
-//
-//  public void setIngredients(List<IngredientForDishDto> ingredients) {
-//    this.ingredients = ingredients;
-//  }
 }

@@ -31,16 +31,6 @@ public class IngredientPartController {
     this.ingredientPartService = ingredientPartService;
   }
 
-  @GetMapping
-  public List<IngredientPartDto> listIngredientParts() {
-    return ingredientPartService.listIngredientParts();
-  }
-
-  @GetMapping("/{id}")
-  public IngredientPartDto oneIngredientPart(@PathVariable("id") int id) {
-    return ingredientPartService.findOneById(id);
-  }
-
   @PostMapping()
   @ResponseStatus(HttpStatus.CREATED)
   private void createPart(@RequestBody IngredientPartFullDto dto) {
@@ -52,6 +42,12 @@ public class IngredientPartController {
                                           @RequestParam(name = "delta", required = true) Double delta) {
     return ingredientPartService.reduceAmountOfIngredient(ingredientId, delta);
   }
+
+  @GetMapping("/summaryVolume")
+  public Double summaryVolumeOfAllIngredients() {
+    return ingredientPartService.summaryVolumeOfAllIngredients();
+  }
+
 
   @DeleteMapping("/{id}")
   public void deletePart(@PathVariable("id") int id) {

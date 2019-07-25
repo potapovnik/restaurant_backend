@@ -3,15 +3,12 @@ package ru.relex.restaurant.service.impl;
 import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.DishIngredientRepository;
 import ru.relex.restaurant.db.entity.DishIngredientId;
-import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.DishIngredientDto;
-import ru.relex.restaurant.service.DishIngredientIdService;
-import ru.relex.restaurant.service.DishIngredientIdService;
+import ru.relex.restaurant.service.DTO.DishIngredientIdDto;
 import ru.relex.restaurant.service.IDishIngredientService;
-import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.mapper.IDishIngredientMapper;
 
-import java.util.List;
+
 
 @Service
 public class DishIngredientService implements IDishIngredientService {
@@ -25,16 +22,13 @@ public class DishIngredientService implements IDishIngredientService {
 
   @Override
   public void createDishIngredient(DishIngredientDto dto) {
-    repository.save(mapper.fromDto(dto));
+    if (dto.getValue() > 0) {
+      repository.save(mapper.fromDto(dto));
+    }
   }
 
   @Override
-  public List<DishIngredientDto> listDishIngredients() {
-    return mapper.toDto(repository.findAll());//mapper.toDto(repository.findAll());
-  }
-
-  @Override
-  public void deleteDishIngredient(DishIngredientIdService id) {
+  public void deleteDishIngredient(DishIngredientIdDto id) {
     DishIngredientId dbId = new DishIngredientId();
     dbId.setDishId(id.getDishId());
     dbId.setIngredientId(id.getIngredientId());

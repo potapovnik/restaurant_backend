@@ -43,4 +43,12 @@ databaseChangeLog:
         - sqlFile:
             path: changesets/changeset_4.1.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: 6
+      author: mmamontov
+      comment: Add volumePerUnit column to ingredients table
+      changes:
+        - sqlFile:
+            path: changesets/changeset_5.0.sql
+            relativeToChangelogFile: true
 

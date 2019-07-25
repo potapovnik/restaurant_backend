@@ -115,4 +115,13 @@ public class IngredientService implements IIngredientService {
     return missingIngredietns;
   }
 
+  @Override
+  public boolean checkIngredientNameUnique(String name) {
+    IngredientDto found = mapper.toDto(repository.findByName(name));
+    if (found == null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

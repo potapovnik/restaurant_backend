@@ -26,7 +26,9 @@ public class DishService implements IDishService {
 
   @Override
   public void createDish(DishDto dto) {
-    dishRepository.save(mapper.fromDto(dto));
+    if (dto.getCost() > 0) {
+      dishRepository.save(mapper.fromDto(dto));
+    }
   }
 
   @Override
@@ -38,28 +40,10 @@ public class DishService implements IDishService {
   public DishesWithTotalCount listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy, String filter) {
     DishesWithTotalCount result = new DishesWithTotalCount();
 
-//    Pageable sortAndPaginator = PageRequest.of(pageIndex, pageSize, Sort.Direction.fromString(sortDirection), sortedBy);
-//    result.setItems(mapper.toDto(dishRepository.findAll(sortAndPaginator).getContent()));
-//    result.setTotalCount(dishRepository.count());
     Pageable sortAndPaginator = PageRequest.of(pageIndex, pageSize, Sort.Direction.fromString(sortDirection), sortedBy);
-    result.setItems(mapper.toDto(dishRepository.findDishesByNameLike("%" + filter + "%", sortAndPaginator).getContent()));
-    result.setTotalCount(dishRepository.findDishesByNameLike("%" + filter + "%", sortAndPaginator).getTotalElements());
+    result.setItems(mapper.toDto(dishRepository.findDishesByNameLikeIgnoreCase("%" + filter + "%", sortAndPaginator).getContent()));
+    result.setTotalCount(dishRepository.findDishesByNameLikeIgnoreCase("%" + filter + "%", sortAndPaginator).getTotalElements());
     return result;
   }
 
-  @Override
-  public void updateDish(DishDto dish) {
-
-  }
-
-  @Override
-  public void deleteDish(int id) {
-
-  }
-
-  @Override
-  public List<DishDto> soldDishes(Date begin, Date end) {
-    //dishRepository.f
-    return null;
-  }
 }

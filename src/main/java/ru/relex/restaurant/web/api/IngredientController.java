@@ -18,6 +18,7 @@ import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.IIngredientService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -54,6 +55,10 @@ public class IngredientController {
     return ingredientService.getMissingIngredients(dishService.listDishesInMenu());
   }
 
+  @GetMapping("/check")
+  public boolean checkIngredientNameUnique(@RequestParam(name = "name", required = true) String name) {
+    return ingredientService.checkIngredientNameUnique(name);
+  }
 
 
   @DeleteMapping("/{id}")

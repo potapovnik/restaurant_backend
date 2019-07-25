@@ -17,11 +17,9 @@ public class DishIngredient implements Serializable {
 
   private Double value;
 
-
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "dish_id", insertable = false, updatable = false) //
   private Dish dish;
-
 
   @ManyToOne
   @JoinColumn(name = "ingredient_id", insertable = false, updatable = false) // , insertable = false, updatable = false
@@ -38,7 +36,6 @@ public class DishIngredient implements Serializable {
     this.id = id;
   }
 
-
   public Double getValue() {
     return value;
   }
@@ -47,22 +44,13 @@ public class DishIngredient implements Serializable {
     this.value = value;
   }
 
-//  public Dish getDish() {
-//    return dish;
-//  }
-//
-//  public void setDish(Dish dish) {
-//    this.dish = dish;
-//  }
-//
-public Ingredient getIngredient() {
+  public Ingredient getIngredient() {
   return ingredient;
 }
 
   public void setIngredient(Ingredient ingredient) {
     this.ingredient = ingredient;
   }
-
 
   @Override
   public boolean equals(Object o) {

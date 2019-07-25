@@ -21,4 +21,5 @@ public interface IIngredientService {
 
   List<MissingIngredientDto> getMissingIngredients(List<DishDto> dishesInMenu);
 
+  boolean checkIngredientNameUnique(String name);
 }
