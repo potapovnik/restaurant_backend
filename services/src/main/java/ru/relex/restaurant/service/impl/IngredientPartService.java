@@ -4,18 +4,14 @@ import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.IngredientPartRepository;
 import ru.relex.restaurant.db.JpaRepository.IngredientRepository;
 import ru.relex.restaurant.db.JpaRepository.RestaurantConfigRepository;
-import ru.relex.restaurant.service.DTO.IngredientDto;
-import ru.relex.restaurant.service.DTO.IngredientPartFullDto;
+import ru.relex.restaurant.service.DTO.*;
 import ru.relex.restaurant.service.IIngredientPartService;
-import ru.relex.restaurant.service.DTO.IngredientPartDto;
 import ru.relex.restaurant.service.mapper.IIngredientMapper;
 import ru.relex.restaurant.service.mapper.IIngredientPartFullMapper;
 import ru.relex.restaurant.service.mapper.IIngredientPartMapper;
 import ru.relex.restaurant.service.mapper.IRestaurantConfigMapper;
 
-import java.util.Date;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class IngredientPartService implements IIngredientPartService {
@@ -67,6 +63,7 @@ public class IngredientPartService implements IIngredientPartService {
   /**
    * Суммарное количество ингредиента во всех партиях(с неистекшим сроком годности)
    * !Последний день - включительно годен
+   *
    * @param ingrId - ID ингредиента
    * @return - количество ингредиента во всех партиях с неистекшим сроком годности
    */
@@ -174,4 +171,37 @@ public class IngredientPartService implements IIngredientPartService {
     }
     return result;
   }
+
+  public boolean debetIngredients(List<OrderDishDto> dishes) {
+    //посчитать все ингредиенты
+    Map<Integer, Double> needIngredientsAmount = new HashMap<>();
+    for (int i = 0; i < dishes.size(); i++) {
+      List<DishIngredientDto> consist = dishes.get(i).getDish().getConsist();
+      for (int j = 0; j < consist.size(); j++) {
+        Integer mapKey = consist.get(j).getIngredient().getId();
+        if (needIngredientsAmount.containsKey(mapKey)) {
+          needIngredientsAmount.put(mapKey,
+              needIngredientsAmount.get(mapKey) + (consist.get(j).getValue()*dishes.get(i).getCount()));
+        } else {
+          needIngredientsAmount.put(mapKey,consist.get(j).getValue()*dishes.get(i).getCount());
+        }
+      }
+    }
+    for (Map.Entry<Integer, Double> entry: needIngredientsAmount.entrySet()) {
+      Integer ingrId = entry.getKey();
+      Double needAmount = entry.getValue();
+      if (summaryAmountOfIngredient(ingrId) < needAmount){
+        return false;
+      }
+    }
+    for (Map.Entry<Integer, Double> entry: needIngredientsAmount.entrySet()) {
+      Integer ingrId = entry.getKey();
+      Double needAmount = entry.getValue();
+      if (!reduceAmountOfIngredient(ingrId, needAmount)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }

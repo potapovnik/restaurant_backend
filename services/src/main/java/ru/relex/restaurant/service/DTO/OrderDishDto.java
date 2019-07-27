@@ -5,9 +5,9 @@ import ru.relex.restaurant.db.entity.Dish;
 public class OrderDishDto {
     private int id;
     private int count;
-    private Dish dish;
+    private DishDto dish;
     public OrderDishDto(){}
-    public OrderDishDto(int id, int count, Dish dish) {
+    public OrderDishDto(int id, int count, DishDto dish) {
         this.id = id;
         this.count = count;
         this.dish = dish;
@@ -29,11 +29,11 @@ public class OrderDishDto {
         this.count = count;
     }
 
-    public Dish getDish() {
+    public DishDto getDish() {
         return dish;
     }
 
-    public void setDish(Dish dish) {
+    public void setDish(DishDto dish) {
         this.dish = dish;
     }
 }
