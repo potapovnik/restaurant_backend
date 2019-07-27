@@ -13,7 +13,7 @@ import ru.relex.restaurant.service.mapper.IIngredientPartFullMapper;
 import ru.relex.restaurant.service.mapper.IIngredientPartMapper;
 import ru.relex.restaurant.service.mapper.IRestaurantConfigMapper;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
 
@@ -66,7 +66,7 @@ public class IngredientPartService implements IIngredientPartService {
 
   /**
    * Суммарное количество ингредиента во всех партиях(с неистекшим сроком годности)
-   *
+   * !Последний день - включительно годен
    * @param ingrId - ID ингредиента
    * @return - количество ингредиента во всех партиях с неистекшим сроком годности
    */
@@ -74,10 +74,15 @@ public class IngredientPartService implements IIngredientPartService {
   public Double summaryAmountOfIngredient(Integer ingrId) {
     Double result = 0.0;
     Calendar calendar = Calendar.getInstance();
+    calendar.set(Calendar.HOUR_OF_DAY, 0);
+    calendar.set(Calendar.MINUTE, 0);
+    calendar.set(Calendar.SECOND, 0);
+    calendar.set(Calendar.MILLISECOND, 0);
+    Date today = calendar.getTime();
 
     List<IngredientPartFullDto> parts = mapperFull.toDto(repository.findAllByIngredientId(ingrId));
     for (IngredientPartFullDto part : parts) {
-      if (part.getExpirationDate().after(calendar.getTime())) {
+      if (part.getExpirationDate().after(today) || (part.getExpirationDate().getTime() == today.getTime())) {
         result += part.getValue();
       }
     }
@@ -96,10 +101,16 @@ public class IngredientPartService implements IIngredientPartService {
   public boolean reduceAmountOfIngredient(Integer ingrId, Double delta) {
 
     IngredientPartFullDto changedPart = new IngredientPartFullDto();
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(Calendar.HOUR_OF_DAY, 0);
+    calendar.set(Calendar.MINUTE, 0);
+    calendar.set(Calendar.SECOND, 0);
+    calendar.set(Calendar.MILLISECOND, 0);
+    Date today = calendar.getTime();
+
     if (delta > summaryAmountOfIngredient(ingrId)) {
       return false; // не хватает ингредиента
     }
-    java.util.Date today = Calendar.getInstance().getTime();
     List<IngredientPartFullDto> parts = mapperFull.toDto(repository.findAllByIngredientId(ingrId));
     if (parts == null) {
       return false;
@@ -111,7 +122,7 @@ public class IngredientPartService implements IIngredientPartService {
       int theOldestPartIdInArray = -1;
       for (int i = 0; i < parts.size(); i++) {
         if (theOldestDate == null) {
-          if (parts.get(i).getExpirationDate().after(today) || parts.get(i).getExpirationDate().equals(today)) {
+          if (parts.get(i).getExpirationDate().after(today) || parts.get(i).getExpirationDate().getTime() == today.getTime()) {
             theOldestDate = parts.get(i).getExpirationDate();
             theOldestPartIdInArray = i;
           } else {
@@ -120,9 +131,9 @@ public class IngredientPartService implements IIngredientPartService {
         }
         // я считаю последний день годности - годным
         if (
-            (parts.get(i).getExpirationDate().after(today) || parts.get(i).getExpirationDate().equals(today))
+            (parts.get(i).getExpirationDate().after(today) || parts.get(i).getExpirationDate().getTime() == today.getTime())
                 &&
-                (parts.get(i).getExpirationDate().before(theOldestDate) || parts.get(i).getExpirationDate().equals(theOldestDate))) {
+                (parts.get(i).getExpirationDate().before(theOldestDate) || parts.get(i).getExpirationDate().getTime() == theOldestDate.getTime())) {
           theOldestDate = parts.get(i).getExpirationDate();
           theOldestPartIdInArray = i;
         }

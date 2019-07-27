@@ -9,19 +9,24 @@ import ru.relex.restaurant.db.JpaRepository.DishRepository;
 import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.DishesWithTotalCount;
 import ru.relex.restaurant.service.IDishService;
+import ru.relex.restaurant.service.IIngredientPartService;
 import ru.relex.restaurant.service.mapper.IDishMapper;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Service
 public class DishService implements IDishService {
   private final DishRepository dishRepository;
   private final IDishMapper mapper;
+  private final IIngredientPartService ingredientPartService;
 
-  public DishService(DishRepository dishRepository, IDishMapper mapper) {
+  public DishService(DishRepository dishRepository, IDishMapper mapper, IIngredientPartService ingredientPartService) {
     this.dishRepository = dishRepository;
     this.mapper = mapper;
+    this.ingredientPartService = ingredientPartService;
   }
 
   @Override
@@ -33,7 +38,18 @@ public class DishService implements IDishService {
 
   @Override
   public List<DishDto> listDishesInMenu() {
-    return mapper.toDto(dishRepository.findAllDishesInMenu());
+    List<DishDto> dishesInMenu = mapper.toDto(dishRepository.findAllDishesInMenu());
+    ArrayList<Integer> ingredientMaxDish = new ArrayList<>();
+    for (int i = 0; i < dishesInMenu.size(); i++) {
+      ingredientMaxDish.clear();
+      for (int j = 0; j < dishesInMenu.get(i).getConsist().size(); j++) {
+        Double temp = ingredientPartService.summaryAmountOfIngredient(dishesInMenu.get(i).getConsist().get(j).getIngredient().getId())
+            / dishesInMenu.get(i).getConsist().get(j).getValue();
+        ingredientMaxDish.add(temp.intValue());
+      }
+      dishesInMenu.get(i).setMaxCount(Collections.min(ingredientMaxDish));
+    }
+    return dishesInMenu;
   }
 
   @Override
