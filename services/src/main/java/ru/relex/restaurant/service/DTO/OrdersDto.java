@@ -9,14 +9,9 @@ public class OrdersDto {
   private int id;
   private String comments;
   private List<History> historyList;
+  private List<OrderDishDto> consist;
 
   public OrdersDto() {
-  }
-
-  public OrdersDto(int id, String comments, List<History> historyList) {
-    this.id = id;
-    this.comments = comments;
-    this.historyList = historyList;
   }
 
   public int getId() {
@@ -41,5 +36,13 @@ public class OrdersDto {
 
   public void setHistoryList(List<History> historyList) {
     this.historyList = historyList;
+  }
+
+  public List<OrderDishDto> getConsist() {
+    return consist;
+  }
+
+  public void setConsist(List<OrderDishDto> consist) {
+    this.consist = consist;
   }
 }

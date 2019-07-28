@@ -1,27 +1,21 @@
 package ru.relex.restaurant.service.DTO;
 
-import ru.relex.restaurant.db.entity.Dish;
 
 public class OrderDishDto {
-    private int id;
+  private OrderDishIdDto id;
     private int count;
     private DishDto dish;
     public OrderDishDto(){}
-    public OrderDishDto(int id, int count, DishDto dish) {
-        this.id = id;
-        this.count = count;
-        this.dish = dish;
-    }
 
-    public int getId() {
-        return id;
-    }
+  public OrderDishIdDto getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(OrderDishIdDto id) {
+    this.id = id;
+  }
 
-    public int getCount() {
+  public int getCount() {
         return count;
     }
 

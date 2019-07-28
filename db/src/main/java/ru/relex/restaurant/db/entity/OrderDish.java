@@ -1,46 +1,71 @@
 package ru.relex.restaurant.db.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "order_dish")
+@Embeddable
 public class OrderDish {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_dish_seq")
-    @SequenceGenerator(name = "order_dish_seq", sequenceName = "order_dish_id_seq", allocationSize = 1)
-    private int id;
-    private int count;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dish_id")
-    private Dish dish;
-    public OrderDish(){}
-    public OrderDish(int id, int count, Dish dish) {
-        this.id = id;
-        this.count = count;
-        this.dish = dish;
-    }
 
-    public int getId() {
-        return id;
-    }
+  @EmbeddedId
+  private OrderDishId id;
+  private int count;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "dish_id", insertable = false, updatable = false) //
+  private Dish dish;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "order_id", insertable = false, updatable = false) //
+  private Orders order;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public OrderDish() {
+  }
 
-    public int getCount() {
-        return count;
-    }
+  public OrderDishId getId() {
+    return id;
+  }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
+  public void setId(OrderDishId id) {
+    this.id = id;
+  }
 
-    public Dish getDish() {
-        return dish;
-    }
+  public int getCount() {
+    return count;
+  }
 
-    public void setDish(Dish dish) {
-        this.dish = dish;
-    }
+  public void setCount(int count) {
+    this.count = count;
+  }
+
+  public Dish getDish() {
+    return dish;
+  }
+
+  public void setDish(Dish dish) {
+    this.dish = dish;
+  }
+
+  public Orders getOrder() {
+    return order;
+  }
+
+  public void setOrder(Orders order) {
+    this.order = order;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    OrderDish orderDish = (OrderDish) o;
+    return count == orderDish.count &&
+        Objects.equals(id, orderDish.id) &&
+        Objects.equals(dish, orderDish.dish) &&
+        Objects.equals(order, orderDish.order);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, count, dish, order);
+  }
 }

@@ -14,6 +14,10 @@ public class Orders {
   @OneToMany(fetch = FetchType.LAZY)
   @JoinColumn(name = "order_id")
   private List<History> historyList;
+
+  @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<OrderDish> consist;
+
   public Orders(){
   }
   public Orders(int id, String comments, List<History> historyList) {
@@ -44,5 +48,13 @@ public class Orders {
 
   public void setHistoryList(List<History> historyList) {
     this.historyList = historyList;
+  }
+
+  public List<OrderDish> getConsist() {
+    return consist;
+  }
+
+  public void setConsist(List<OrderDish> consist) {
+    this.consist = consist;
   }
 }

@@ -44,7 +44,7 @@ public class OrdersService implements IOrdersService {
     if (newOrders.isEmpty()) {
       return null;
     }
-    Orders updatedOrders = ordersRepository.save(newOrders.get());
+    Orders updatedOrders = ordersRepository.save(ordersMapper.fromDto(ordersDto));
     return ordersMapper.toDto(updatedOrders);
   }
 
