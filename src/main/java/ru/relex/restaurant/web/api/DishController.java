@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import ru.relex.restaurant.service.DTO.DishDto;
 import ru.relex.restaurant.service.DTO.DishIngredientDto;
 import ru.relex.restaurant.service.DTO.DishIngredientIdDto;
-import ru.relex.restaurant.service.DTO.DishesWithTotalCount;
+import ru.relex.restaurant.service.DTO.DishesWithTotalCountDto;
 import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
 
@@ -40,7 +40,7 @@ public class DishController {
   }
 
   @GetMapping
-  public DishesWithTotalCount listDishesAllTime(
+  public DishesWithTotalCountDto listDishesAllTime(
       @RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
       @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
       @RequestParam(name = "sortedBy", required = false, defaultValue = "id") String sortedBy,

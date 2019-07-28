@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.relex.restaurant.db.JpaRepository.DishRepository;
 
 import ru.relex.restaurant.service.DTO.DishDto;
-import ru.relex.restaurant.service.DTO.DishesWithTotalCount;
+import ru.relex.restaurant.service.DTO.DishesWithTotalCountDto;
 import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.IIngredientPartService;
 import ru.relex.restaurant.service.mapper.IDishMapper;
@@ -15,7 +15,6 @@ import ru.relex.restaurant.service.mapper.IDishMapper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 @Service
 public class DishService implements IDishService {
@@ -53,8 +52,8 @@ public class DishService implements IDishService {
   }
 
   @Override
-  public DishesWithTotalCount listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy, String filter) {
-    DishesWithTotalCount result = new DishesWithTotalCount();
+  public DishesWithTotalCountDto listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy, String filter) {
+    DishesWithTotalCountDto result = new DishesWithTotalCountDto();
 
     Pageable sortAndPaginator = PageRequest.of(pageIndex, pageSize, Sort.Direction.fromString(sortDirection), sortedBy);
     result.setItems(mapper.toDto(dishRepository.findDishesByNameLikeIgnoreCase("%" + filter + "%", sortAndPaginator).getContent()));

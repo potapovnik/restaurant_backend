@@ -2,9 +2,8 @@ package ru.relex.restaurant.service;
 
 
 import ru.relex.restaurant.service.DTO.DishDto;
-import ru.relex.restaurant.service.DTO.DishesWithTotalCount;
+import ru.relex.restaurant.service.DTO.DishesWithTotalCountDto;
 
-import java.sql.Date;
 import java.util.List;
 
 public interface IDishService {
@@ -12,6 +11,6 @@ public interface IDishService {
 
   List<DishDto> listDishesInMenu();
 
-  DishesWithTotalCount listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy, String filter);
+  DishesWithTotalCountDto listDishesAllTime(int pageIndex, int pageSize, String sortDirection, String sortedBy, String filter);
 
 }

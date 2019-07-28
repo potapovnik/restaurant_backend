@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import ru.relex.restaurant.service.DTO.IngredientsWithTotalCount;
+import ru.relex.restaurant.service.DTO.IngredientsWithTotalCountDto;
 import ru.relex.restaurant.service.DTO.MissingIngredientDto;
 import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
@@ -49,7 +49,7 @@ public class IngredientController {
 
 
   @GetMapping
-  public IngredientsWithTotalCount listIngredients(
+  public IngredientsWithTotalCountDto listIngredients(
       @RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
       @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
       @RequestParam(name = "sortedBy", required = false, defaultValue = "id") String sortedBy,

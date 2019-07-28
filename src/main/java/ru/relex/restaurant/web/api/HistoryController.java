@@ -3,7 +3,11 @@ package ru.relex.restaurant.web.api;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.restaurant.service.DTO.HistoryDto;
+import ru.relex.restaurant.service.DTO.StatisticDto;
 import ru.relex.restaurant.service.IHistoryService;
+
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/history",
@@ -15,6 +19,11 @@ public class HistoryController {
 
   public HistoryController(IHistoryService historyService) {
     this.historyService = historyService;
+  }
+
+  @GetMapping
+  public StatisticDto statistic(@RequestParam(name = "from") String from, @RequestParam(name = "to") String to) {
+    return historyService.getStatistic(new Date(Long.parseLong(from)), new Date(Long.parseLong(to)));
   }
 
   @PostMapping()

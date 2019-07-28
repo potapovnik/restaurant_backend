@@ -2,18 +2,18 @@ package ru.relex.restaurant.service.DTO;
 
 import java.util.List;
 
-public class DishesWithTotalCount {
-  private List<DishDto> items;
+public class IngredientsWithTotalCountDto {
+  private List<IngredientDto> items;
   private long totalCount;
 
-  public DishesWithTotalCount() {
+  public IngredientsWithTotalCountDto() {
   }
 
-  public List<DishDto> getItems() {
+  public List<IngredientDto> getItems() {
     return items;
   }
 
-  public void setItems(List<DishDto> items) {
+  public void setItems(List<IngredientDto> items) {
     this.items = items;
   }
 
