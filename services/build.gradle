@@ -5,5 +5,5 @@ dependencies {
   annotationProcessor 'org.mapstruct:mapstruct-processor:1.3.0.Final'
 
   implementation project(":db")
-
+  implementation project(":security")
 }
