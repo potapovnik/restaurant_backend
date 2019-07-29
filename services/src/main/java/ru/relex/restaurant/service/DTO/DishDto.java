@@ -1,7 +1,6 @@
 package ru.relex.restaurant.service.DTO;
 
 import java.util.List;
-import java.util.Map;
 
 public class DishDto {
 
@@ -10,6 +9,7 @@ public class DishDto {
   private Double cost;
   private String type;
   private Boolean ismenu;
+  private Integer maxCount;
   private List<DishIngredientDto> consist;
 
   public DishDto() {
@@ -63,4 +63,11 @@ public class DishDto {
     this.ismenu = ismenu;
   }
 
+  public Integer getMaxCount() {
+    return maxCount;
+  }
+
+  public void setMaxCount(Integer maxCount) {
+    this.maxCount = maxCount;
+  }
 }

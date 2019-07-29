@@ -9,4 +9,6 @@ public interface IDishIngredientService {
   void createDishIngredient(DishIngredientDto dto);
 
   void deleteDishIngredient(DishIngredientIdDto id);
+
+  boolean isUsedInDish(Integer ingredientId);
 }

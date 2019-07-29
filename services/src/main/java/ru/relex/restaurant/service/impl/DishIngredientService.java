@@ -8,6 +8,7 @@ import ru.relex.restaurant.service.DTO.DishIngredientIdDto;
 import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.mapper.IDishIngredientMapper;
 
+import java.util.List;
 
 
 @Service
@@ -33,5 +34,15 @@ public class DishIngredientService implements IDishIngredientService {
     dbId.setDishId(id.getDishId());
     dbId.setIngredientId(id.getIngredientId());
     repository.deleteById(dbId);
+  }
+
+  @Override
+  public boolean isUsedInDish(Integer ingredientId) {
+    List<DishIngredientDto> result = mapper.toDto(repository.findDishIngredientsByIngredient_Id(ingredientId));
+    if (result.size() > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -10,15 +10,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import ru.relex.restaurant.service.DTO.IngredientsWithTotalCount;
+import ru.relex.restaurant.service.DTO.IngredientsWithTotalCountDto;
 import ru.relex.restaurant.service.DTO.MissingIngredientDto;
+import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.IIngredientService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -29,10 +28,12 @@ import java.util.List;
 public class IngredientController {
   private final IIngredientService ingredientService;
   private final IDishService dishService;
+  private final IDishIngredientService dishIngredientService;
 
-  public IngredientController(IIngredientService ingredientService, IDishService dishService) {
+  public IngredientController(IIngredientService ingredientService, IDishService dishService, IDishIngredientService dishIngredientService) {
     this.ingredientService = ingredientService;
     this.dishService = dishService;
+    this.dishIngredientService = dishIngredientService;
   }
 
   @PostMapping
@@ -41,8 +42,14 @@ public class IngredientController {
     ingredientService.createIngredient(ingredientDto);
   }
 
+  @GetMapping("/isUsed/{id}")
+  public boolean isIngredientUsedInDish(@PathVariable("id") Integer ingredientId) {
+    return dishIngredientService.isUsedInDish(ingredientId);
+  }
+
+
   @GetMapping
-  public IngredientsWithTotalCount listIngredients(
+  public IngredientsWithTotalCountDto listIngredients(
       @RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
       @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
       @RequestParam(name = "sortedBy", required = false, defaultValue = "id") String sortedBy,

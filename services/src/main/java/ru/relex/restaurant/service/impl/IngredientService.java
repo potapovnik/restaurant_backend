@@ -34,8 +34,8 @@ public class IngredientService implements IIngredientService {
   }
 
   @Override
-  public IngredientsWithTotalCount listIngredients(int pageIndex, int pageSize, String sortDirection, String sortedBy) {
-    IngredientsWithTotalCount result = new IngredientsWithTotalCount();
+  public IngredientsWithTotalCountDto listIngredients(int pageIndex, int pageSize, String sortDirection, String sortedBy) {
+    IngredientsWithTotalCountDto result = new IngredientsWithTotalCountDto();
 
     Pageable sortAndPaginator = PageRequest.of(pageIndex, pageSize, Sort.Direction.fromString(sortDirection), sortedBy);
 

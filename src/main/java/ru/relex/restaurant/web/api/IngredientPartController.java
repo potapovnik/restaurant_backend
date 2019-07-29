@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.relex.restaurant.service.DTO.IngredientPartFullDto;
+import ru.relex.restaurant.service.DTO.OrderDishDto;
 import ru.relex.restaurant.service.IIngredientPartService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 import ru.relex.restaurant.service.DTO.IngredientPartDto;
@@ -41,6 +42,11 @@ public class IngredientPartController {
   public boolean reduceAmountOfIngredient(@RequestParam(name = "ingredientId", required = true) Integer ingredientId,
                                           @RequestParam(name = "delta", required = true) Double delta) {
     return ingredientPartService.reduceAmountOfIngredient(ingredientId, delta);
+  }
+
+  @PutMapping("/debit")
+  public boolean debitIngredietns(@RequestBody List<OrderDishDto> dishes){
+    return ingredientPartService.debetIngredients(dishes);
   }
 
   @GetMapping("/summaryVolume")

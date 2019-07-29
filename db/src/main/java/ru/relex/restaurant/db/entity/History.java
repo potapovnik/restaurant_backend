@@ -12,19 +12,17 @@ public class History {
   @SequenceGenerator(name = "history_seq", sequenceName = "history_id_seq", allocationSize = 1)
   private int id;
   private Date time;
-  private int status_id;
-  private int order_id;
+
+
+  private int statusId;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "order_id")
+  private Orders order;
+
   private int user_id;
 
   public History(){
 
-  }
-  public History(int id, Date time, int status_id, int order_id, int user_id) {
-    this.id = id;
-    this.time = time;
-    this.status_id = status_id;
-    this.order_id = order_id;
-    this.user_id = user_id;
   }
 
   public int getId() {
@@ -43,20 +41,20 @@ public class History {
     this.time = time;
   }
 
-  public int getStatus_id() {
-    return status_id;
+  public int getStatusId() {
+    return statusId;
   }
 
-  public void setStatus_id(int status_id) {
-    this.status_id = status_id;
+  public void setStatusId(int statusId) {
+    this.statusId = statusId;
   }
 
-  public int getOrder_id() {
-    return order_id;
+  public Orders getOrder() {
+    return order;
   }
 
-  public void setOrder_id(int order_id) {
-    this.order_id = order_id;
+  public void setOrder(Orders order) {
+    this.order = order;
   }
 
   public int getUser_id() {
