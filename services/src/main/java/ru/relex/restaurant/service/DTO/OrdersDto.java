@@ -1,14 +1,13 @@
 package ru.relex.restaurant.service.DTO;
 
 
-import ru.relex.restaurant.db.entity.History;
-
 import java.util.List;
 
 public class OrdersDto {
   private int id;
   private String comments;
-  private List<History> historyList;
+
+  private List<HistoryOrderDto> historyList;
   private List<OrderDishDto> consist;
 
   public OrdersDto() {
@@ -30,13 +29,6 @@ public class OrdersDto {
     this.comments = comments;
   }
 
-  public List<History> getHistoryList() {
-    return historyList;
-  }
-
-  public void setHistoryList(List<History> historyList) {
-    this.historyList = historyList;
-  }
 
   public List<OrderDishDto> getConsist() {
     return consist;
@@ -44,5 +36,13 @@ public class OrdersDto {
 
   public void setConsist(List<OrderDishDto> consist) {
     this.consist = consist;
+  }
+
+  public List<HistoryOrderDto> getHistoryList() {
+    return historyList;
+  }
+
+  public void setHistoryList(List<HistoryOrderDto> historyList) {
+    this.historyList = historyList;
   }
 }

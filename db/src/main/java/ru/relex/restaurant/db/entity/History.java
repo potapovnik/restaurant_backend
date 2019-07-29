@@ -12,8 +12,6 @@ public class History {
   @SequenceGenerator(name = "history_seq", sequenceName = "history_id_seq", allocationSize = 1)
   private int id;
   private Date time;
-
-
   private int statusId;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "order_id")

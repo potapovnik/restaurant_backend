@@ -1,31 +1,24 @@
 package ru.relex.restaurant.service.DTO;
 
-
 import java.util.Date;
 
-public class HistoryDto {
+public class HistoryOrderDto {
+
   private int id;
   private Date time;
-  private OrdersForHistoryDto order;
-
-
   private int statusId;
   private int user_id;
   private Integer cook_id;
-
-  public HistoryDto() {
-
-
+  public HistoryOrderDto() {
   }
 
-  public HistoryDto(int id, Date time, OrdersForHistoryDto order, int statusId, int user_id, Integer cook_id) {
+  public HistoryOrderDto(int id, Date time,  int statusId, int user_id, Integer cook_id) {
+
     this.id = id;
     this.time = time;
-    this.order = order;
     this.statusId = statusId;
     this.user_id = user_id;
     this.cook_id = cook_id;
-
   }
 
   public int getId() {
@@ -44,13 +37,12 @@ public class HistoryDto {
     this.time = time;
   }
 
-
-  public OrdersForHistoryDto getOrder() {
-    return order;
+  public int getStatusId() {
+    return statusId;
   }
 
-  public void setOrder(OrdersForHistoryDto order) {
-    this.order = order;
+  public void setStatusId(int statusId) {
+    this.statusId = statusId;
   }
 
   public int getUser_id() {
@@ -68,13 +60,4 @@ public class HistoryDto {
   public void setCook_id(Integer cook_id) {
     this.cook_id = cook_id;
   }
-
-  public int getStatusId() {
-    return statusId;
-  }
-
-  public void setStatusId(int statusId) {
-    this.statusId = statusId;
-  }
 }
-
