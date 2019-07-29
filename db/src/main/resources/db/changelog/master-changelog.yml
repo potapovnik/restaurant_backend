@@ -51,4 +51,12 @@ databaseChangeLog:
         - sqlFile:
             path: changesets/changeset_5.0.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: 7
+      author: potapov
+      comment: incremented length of password
+      changes:
+        - sqlFile:
+            path: changesets/changeset_5.1.sql
+            relativeToChangelogFile: true
 

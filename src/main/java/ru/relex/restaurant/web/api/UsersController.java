@@ -28,7 +28,6 @@ public class UsersController {
   }
 
   @GetMapping(value = "{id}")
-
   public UserDto getById(@PathVariable("id") int id) {
     UserDto userDto = userService.getById(id);
     if (userDto == null) {
