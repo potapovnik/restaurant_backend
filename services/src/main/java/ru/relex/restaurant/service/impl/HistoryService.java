@@ -6,6 +6,7 @@ import ru.relex.restaurant.db.JpaRepository.HistoryRepository;
 import ru.relex.restaurant.db.entity.History;
 import ru.relex.restaurant.service.DTO.*;
 import ru.relex.restaurant.service.IHistoryService;
+import ru.relex.restaurant.service.IOrdersService;
 import ru.relex.restaurant.service.mapper.IHistoryMapper;
 import ru.relex.restaurant.service.utils.StatusEnum;
 
@@ -18,10 +19,12 @@ import java.util.Map;
 public class HistoryService implements IHistoryService {
   private final IHistoryMapper historyMapper;
   private final HistoryRepository historyRepository;
+  private final IOrdersService ordersService;
 
-  public HistoryService(IHistoryMapper historyMapper, HistoryRepository historyRepository) {
+  public HistoryService(IHistoryMapper historyMapper, HistoryRepository historyRepository, IOrdersService ordersService) {
     this.historyMapper = historyMapper;
     this.historyRepository = historyRepository;
+    this.ordersService = ordersService;
   }
 
   @Override
@@ -52,6 +55,7 @@ public class HistoryService implements IHistoryService {
     Double revenue = 0.0;
     List<HistoryDto> history = getAll(from, to);
     for (HistoryDto oneHistory : history) {
+
       for (OrderDishDto oneOrderConsist : oneHistory.getOrder().getConsist()) {
         if (soldDishes.containsKey(oneOrderConsist.getDish().getName())) {
           Integer newDishesCount = soldDishes.get(oneOrderConsist.getDish().getName()) + oneOrderConsist.getCount();
