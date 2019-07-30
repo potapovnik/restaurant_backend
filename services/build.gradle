@@ -6,4 +6,5 @@ dependencies {
 
   implementation project(":db")
   implementation project(":security")
+  compileOnly 'org.springframework.security:spring-security-core:5.1.5.RELEASE'
 }
