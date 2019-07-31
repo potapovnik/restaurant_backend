@@ -1,8 +1,11 @@
 package ru.relex.restaurant.service.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UserDto {
   private int id;
   private String login;
+  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private String password;
   private String name;
   private String surname;

@@ -1,7 +1,7 @@
 insert into status(id,name)
 values (1,'Официант принял заказ');
 insert into status(id,name)
-values (2,'Повар назначен на заказ');
+values (2,'Официант создал заказ');
 insert into status(id,name)
 values (3,'Повар принял заказ');
 insert into status(id,name)

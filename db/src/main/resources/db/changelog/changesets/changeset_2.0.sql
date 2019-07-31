@@ -16,7 +16,7 @@ create table users
 		constraint users_pkey
 			primary key,
 	login varchar(40) not null,
-	password varchar(40) not null,
+	password varchar(256) not null,
 	name varchar(40) not null,
 	surname varchar(40) not null,
 	role_id integer
