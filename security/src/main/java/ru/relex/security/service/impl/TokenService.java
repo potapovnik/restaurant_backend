@@ -54,6 +54,7 @@ public class TokenService implements ITokenService {
 
     Users users = usersRepository.findByLogin(username);
     var userRoles = users.getRoleId();
+    var userId = users.getId();
     if (users == null) {// если сущность,то проверить,что пустая || userRoles.isEmpty()
       throw new UsernameNotFoundException("User " + username + " already removed from the system");
     }
@@ -63,6 +64,7 @@ public class TokenService implements ITokenService {
         .signWith(SIGNING_KEY)
         .setSubject(username)
         .claim("role", userRoles)
+        .claim("id", userId)
         .setIssuedAt(date)
         .setExpiration(Date.from(now.plus(Duration.ofMinutes(ACCESS_TIME))))
         .compact();
