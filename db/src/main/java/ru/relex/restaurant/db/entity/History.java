@@ -17,7 +17,7 @@ public class History {
   @JoinColumn(name = "order_id")
   private Orders order;
 
-  private int user_id;
+  private int userId;
 
   public History(){
 
@@ -55,11 +55,11 @@ public class History {
     this.order = order;
   }
 
-  public int getUser_id() {
-    return user_id;
+  public int getUserId() {
+    return userId;
   }
 
-  public void setUser_id(int user_id) {
-    this.user_id = user_id;
+  public void setUserId(int userId) {
+    this.userId = userId;
   }
 }

@@ -6,6 +6,7 @@ import ru.relex.restaurant.service.DTO.HistoryDto;
 import ru.relex.restaurant.service.DTO.StatisticDto;
 import ru.relex.restaurant.service.IHistoryService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class HistoryController {
   }
 
   @GetMapping
+  @RolesAllowed({"ADMIN"})
   public StatisticDto statistic(@RequestParam(name = "from") String from, @RequestParam(name = "to") String to) {
     return historyService.getStatistic(new Date(Long.parseLong(from)), new Date(Long.parseLong(to)));
   }

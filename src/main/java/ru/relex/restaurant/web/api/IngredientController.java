@@ -18,6 +18,7 @@ import ru.relex.restaurant.service.IDishService;
 import ru.relex.restaurant.service.IIngredientService;
 import ru.relex.restaurant.service.DTO.IngredientDto;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -38,6 +39,7 @@ public class IngredientController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
+  @RolesAllowed({"KEEPER"})
   public void createIngredient(@RequestBody IngredientDto ingredientDto) {
     ingredientService.createIngredient(ingredientDto);
   }
@@ -58,17 +60,20 @@ public class IngredientController {
   }
 
   @GetMapping("/missing")
+  @RolesAllowed({"KEEPER", "ADMIN", "COOKER"})
   public List<MissingIngredientDto> listMissingIngredients() {
     return ingredientService.getMissingIngredients(dishService.listDishesInMenu());
   }
 
   @GetMapping("/check")
+  @RolesAllowed({"KEEPER"})
   public boolean checkIngredientNameUnique(@RequestParam(name = "name", required = true) String name) {
     return ingredientService.checkIngredientNameUnique(name);
   }
 
 
   @DeleteMapping("/{id}")
+  @RolesAllowed({"KEEPER"})
   public void removeIngredient(@PathVariable("id") int id) {
     ingredientService.deleteIngredient(id);
   }

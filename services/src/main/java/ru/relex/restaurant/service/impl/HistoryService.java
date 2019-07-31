@@ -34,7 +34,7 @@ public class HistoryService implements IHistoryService {
     historyForSave.setTime(new Date());
     History savedHistory = historyRepository.save(historyForSave);
     if (historyDto.getCook_id()!= null){
-      historyForSave.setUser_id(historyDto.getCook_id());
+      historyForSave.setUserId(historyDto.getCook_id());
       historyForSave.setTime(new Date());
       historyForSave.setStatusId(StatusEnum.CookAssigned.getStatusId());
       savedHistory = historyRepository.save(historyForSave);

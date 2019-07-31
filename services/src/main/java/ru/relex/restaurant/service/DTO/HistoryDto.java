@@ -10,7 +10,7 @@ public class HistoryDto {
 
 
   private int statusId;
-  private int user_id;
+  private int userId;
   private Integer cook_id;
 
   public HistoryDto() {
@@ -18,12 +18,12 @@ public class HistoryDto {
 
   }
 
-  public HistoryDto(int id, Date time, OrdersForHistoryDto order, int statusId, int user_id, Integer cook_id) {
+  public HistoryDto(int id, Date time, OrdersForHistoryDto order, int statusId, int userId, Integer cook_id) {
     this.id = id;
     this.time = time;
     this.order = order;
     this.statusId = statusId;
-    this.user_id = user_id;
+    this.userId = userId;
     this.cook_id = cook_id;
 
   }
@@ -53,12 +53,12 @@ public class HistoryDto {
     this.order = order;
   }
 
-  public int getUser_id() {
-    return user_id;
+  public int getUserId() {
+    return userId;
   }
 
-  public void setUser_id(int user_id) {
-    this.user_id = user_id;
+  public void setUserId(int user_id) {
+    this.userId = user_id;
   }
 
   public Integer getCook_id() {

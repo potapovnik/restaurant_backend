@@ -18,6 +18,7 @@ import ru.relex.restaurant.service.DTO.DishesWithTotalCountDto;
 import ru.relex.restaurant.service.IDishIngredientService;
 import ru.relex.restaurant.service.IDishService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -33,13 +34,16 @@ public class DishController {
     this.dishIngredientService = dishIngredientService;
   }
 
+
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public void createIngredient(@RequestBody DishDto dishDto) {
+  @RolesAllowed({"ADMIN"})
+  public void createDish(@RequestBody DishDto dishDto) {
     dishService.createDish(dishDto);
   }
 
   @GetMapping
+  @RolesAllowed({"ADMIN"})
   public DishesWithTotalCountDto listDishesAllTime(
       @RequestParam(name = "pageIndex", required = false, defaultValue = "0") int pageIndex,
       @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
@@ -52,17 +56,20 @@ public class DishController {
   }
 
   @GetMapping("/inmenu")
+  @RolesAllowed({"WAITER"})
   public List<DishDto> listDishesInMenu() {
     return dishService.listDishesInMenu();
   }
 
   @PostMapping("/consist")
   @ResponseStatus(HttpStatus.CREATED)
+  @RolesAllowed({"ADMIN"})
   public void createDishIngredient(@RequestBody DishIngredientDto dishIngDto) {
     dishIngredientService.createDishIngredient(dishIngDto);
   }
 
   @DeleteMapping("/consist/{dishId}/{ingId}")
+  @RolesAllowed({"ADMIN"})
   public void deleteDishIngredient(@PathVariable("dishId") int dishId, @PathVariable("ingId") int ingId) {
     DishIngredientIdDto tempId = new DishIngredientIdDto();
     tempId.setDishId(dishId);

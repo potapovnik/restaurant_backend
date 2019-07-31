@@ -14,6 +14,7 @@ import ru.relex.restaurant.service.DTO.UserDto;
 import ru.relex.restaurant.service.IUserService;
 import ru.relex.restaurant.service.impl.UserService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -37,6 +38,7 @@ public class UsersController {
   }
 
   @PutMapping
+  @RolesAllowed({"ADMIN"})
   public UserDto update(@RequestBody UserDto userDto) {
     UserDto updatedUser = userService.update(userDto);
     if (updatedUser == null) {
@@ -46,11 +48,13 @@ public class UsersController {
   }
 
   @PostMapping
+  @RolesAllowed({"ADMIN"})
   public boolean insert(@RequestBody UserDto userDto) {
     return userService.insert(userDto);
   }
 
   @DeleteMapping("{id}")
+  @RolesAllowed({"ADMIN"})
   public boolean deleteById(@PathVariable("id") int id) {
     return userService.deleteById(id);
   }

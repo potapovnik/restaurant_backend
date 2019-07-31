@@ -64,7 +64,7 @@ public class OrdersService implements IOrdersService {
     List<Orders> ordersOfUser = new ArrayList<>();
     for (Orders curOrd : ordersList) {
       for (History curHis : curOrd.getHistoryList()) {
-        if (curHis.getUser_id() == id){
+        if (curHis.getUserId() == id) {
           ordersOfUser.add(curOrd);
           break;
         }
