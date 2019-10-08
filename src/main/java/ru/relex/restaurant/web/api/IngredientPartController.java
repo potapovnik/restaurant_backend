@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping(path = "/ingredientparts",
     consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
     produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class IngredientPartController {
+public class  IngredientPartController {
   private final IIngredientPartService ingredientPartService;
 
   public IngredientPartController(IIngredientPartService ingredientPartService) {

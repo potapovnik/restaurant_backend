@@ -1,11 +1,13 @@
 package ru.relex.restaurant.service.utils;
 
 public enum StatusEnum {
-  WaiterTake(1, "Официант принял заказ"),
-  CookAssigned (2,"Повар назначен на заказ"),
-  CookTake (3, "Повар принял заказ"),
-  CookGiven(4,"Повар отдал заказ"),
-  WaiterGiven(5,"Официант отдал заказ");
+
+  CookAssigned (1,"Повар назначен на заказ"),
+  WaiterAssigned(2,"Официант назначен на заказ"),
+  WaiterTake(3, "Официант принял заказ"),
+  CookTake (4, "Повар принял заказ"),
+  CookGiven(5,"Повар отдал заказ"),
+  WaiterGiven(6,"Официант отдал заказ");
 
   private int statusId;
   private String name;

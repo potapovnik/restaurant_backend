@@ -13,8 +13,6 @@ public class Roles {
   @SequenceGenerator(name = "roles_seq", sequenceName = "rol_id_seq", allocationSize = 1)
   private int id;
   private String name;
-  //@OneToMany(fetch = FetchType.LAZY)
-  //private List<Users> usersList;
 
   public Roles() {
   }
